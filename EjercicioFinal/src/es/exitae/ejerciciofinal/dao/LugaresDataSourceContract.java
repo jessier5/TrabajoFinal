@@ -1,7 +1,5 @@
 package es.exitae.ejerciciofinal.dao;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 public class LugaresDataSourceContract {
 
