@@ -1,6 +1,7 @@
 package es.exitae.ejerciciofinal.activity;
 
-import es.exitae.ejerciciofinal.R;
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +10,25 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import es.exitae.ejerciciofinal.R;
+import es.exitae.ejerciciofinal.beans.Lugar;
+import es.exitae.ejerciciofinal.dao.LugaresDAO;
 
 public class AdaptadorLugares extends BaseAdapter {
-
+	//creamos las variables necesarias 
 	private LayoutInflater inflador; //Permite crear un objeto Java a partir de un fichero XML
-    TextView nombre, descripcion;
-    ImageView foto;
-    RatingBar valoracion; 
+    private TextView  nombre, descripcion;
+    private ImageView foto;
+    private RatingBar valoracion; 
+    // variable para la conexion a la base de datos
+    private LugaresDAO db;
+    private List<Lugar> Lugares;
     
     public AdaptadorLugares(Context contexto) {
         inflador = (LayoutInflater) contexto
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.db=new LugaresDAO(contexto);
+        this.Lugares=db.selectAll();
     }
     
     
@@ -36,7 +45,7 @@ public class AdaptadorLugares extends BaseAdapter {
 	 */
 	@Override
 	public Object getItem(int position) {
-		return Lugares.elemento(position);
+		return Lugares.get(position);
 	}
 
 	/**
@@ -56,7 +65,7 @@ public class AdaptadorLugares extends BaseAdapter {
 	 */
 	@Override
 	public View getView(int posicion, View vistaReciclada, ViewGroup padre) {
-		 Lugar lugar = Lugares.elemento(posicion);
+		 Lugar lugar = Lugares.get(posicion);
 	        if (vistaReciclada == null) {
 	            vistaReciclada =
 	                   inflador.inflate(R.layout.elemento_lista_lugares, null);
@@ -65,13 +74,13 @@ public class AdaptadorLugares extends BaseAdapter {
 	        descripcion =
 	                 (TextView) vistaReciclada.findViewById(R.id.descripcion);
 	        foto = (ImageView) vistaReciclada.findViewById(R.id.foto);
-	        nombre.setText(lugar.getNombre());
-	        descripcion.setText(lugar.getDireccion());
+	        nombre.setText(lugar.getNombreLugar());
+	        descripcion.setText(lugar.getDescrLugar());
 	        int id = R.drawable.ic_launcher;//R.drawable.otros;
 	        
 	        foto.setImageResource(id);
 	        foto.setScaleType(ImageView.ScaleType.FIT_END);
-	        valoracion.setRating(lugar.getValoracion());
+	        //valoracion.setRating(lugar.getValoracion());
 	        return vistaReciclada;
 	}
 
