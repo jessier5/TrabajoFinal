@@ -34,6 +34,7 @@ int attr uiTiltGestures 0x7f010010
 int attr uiZoomControls 0x7f010011
 int attr uiZoomGestures 0x7f010012
 int attr useViewLifecycle 0x7f010013
+int attr windowTransitionStyle 0x7f010025
 int attr zOrderOnTop 0x7f010014
 int color common_action_bar_splitter 0x7f070009
 int color common_signin_btn_dark_text_default 0x7f070000
@@ -98,8 +99,8 @@ int drawable powered_by_google_light 0x7f020020
 int id adjust_height 0x7f090000
 int id adjust_width 0x7f090001
 int id book_now 0x7f090010
-int id btnLista 0x7f090017
-int id btnMapa 0x7f090018
+int id btnLista 0x7f090019
+int id btnMapa 0x7f09001a
 int id buyButton 0x7f09000c
 int id buy_now 0x7f090011
 int id buy_with_google 0x7f090012
@@ -109,6 +110,7 @@ int id grayscale 0x7f090015
 int id holo_dark 0x7f090007
 int id holo_light 0x7f090008
 int id hybrid 0x7f090003
+int id listar_lugares 0x7f090018
 int id match_parent 0x7f09000e
 int id monochrome 0x7f090016
 int id none 0x7f090002
@@ -117,16 +119,18 @@ int id production 0x7f090009
 int id sandbox 0x7f09000a
 int id satellite 0x7f090005
 int id selectionDetails 0x7f09000d
+int id slide 0x7f090017
 int id strict_sandbox 0x7f09000b
 int id terrain 0x7f090006
 int id wrap_content 0x7f09000f
 int integer google_play_services_version 0x7f080000
-int layout main_activity 0x7f030000
+int layout listar_lugares 0x7f030000
+int layout main_activity 0x7f030001
 int raw gtm_analytics 0x7f040000
 int string accept 0x7f060002
-int string app_name 0x7f060023
-int string btn_lista 0x7f060024
-int string btn_mapa 0x7f060025
+int string app_name 0x7f060026
+int string btn_lista 0x7f060027
+int string btn_mapa 0x7f060028
 int string common_android_wear_notification_needs_update_text 0x7f060009
 int string common_android_wear_update_text 0x7f060016
 int string common_android_wear_update_title 0x7f060014
@@ -146,6 +150,8 @@ int string common_google_play_services_network_error_title 0x7f060017
 int string common_google_play_services_notification_needs_installation_title 0x7f060007
 int string common_google_play_services_notification_needs_update_title 0x7f060008
 int string common_google_play_services_notification_ticker 0x7f060006
+int string common_google_play_services_sign_in_failed_text 0x7f060024
+int string common_google_play_services_sign_in_failed_title 0x7f060023
 int string common_google_play_services_unknown_issue 0x7f06001b
 int string common_google_play_services_unsupported_text 0x7f06001d
 int string common_google_play_services_unsupported_title 0x7f06001c
@@ -155,12 +161,15 @@ int string common_google_play_services_update_title 0x7f060013
 int string common_open_on_phone 0x7f060021
 int string common_signin_button_text 0x7f06001f
 int string common_signin_button_text_long 0x7f060020
+int string commono_google_play_services_api_unavailable_text 0x7f060022
 int string create_calendar_message 0x7f060005
 int string create_calendar_title 0x7f060004
 int string decline 0x7f060003
 int string store_picture_message 0x7f060001
 int string store_picture_title 0x7f060000
-int string wallet_buy_button_place_holder 0x7f060022
+int string txt_empty_lugares 0x7f06002a
+int string txt_titulo_lugares 0x7f060029
+int string wallet_buy_button_place_holder 0x7f060025
 int style AppBaseTheme 0x7f050005
 int style AppTheme 0x7f050006
 int style Theme_IAPTheme 0x7f050000
@@ -172,6 +181,8 @@ int[] styleable AdsAttrs { 0x7f010000, 0x7f010001, 0x7f010002 }
 int styleable AdsAttrs_adSize 0
 int styleable AdsAttrs_adSizes 1
 int styleable AdsAttrs_adUnitId 2
+int[] styleable CustomWalletTheme { 0x7f010025 }
+int styleable CustomWalletTheme_windowTransitionStyle 0
 int[] styleable LoadingImageView { 0x7f010003, 0x7f010004, 0x7f010005 }
 int styleable LoadingImageView_circleCrop 2
 int styleable LoadingImageView_imageAspectRatio 1

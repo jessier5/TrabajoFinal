@@ -2,6 +2,7 @@ package es.exitae.ejerciciofinal.activity;
 
 import es.exitae.ejerciciofinal.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,17 +17,31 @@ public class PrincipalActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
 		
+		//Lanzamos evento del botón Lista
 		btnLista = (Button) findViewById(R.id.btnLista);
 		btnLista.setOnClickListener(this);
 		
-		
+		//Lanzamos evento del botón Mapa
 		btnMapa = (Button) findViewById(R.id.btnMapa);
 		btnMapa.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		switch(v.getId()){
+		case R.id.btnLista:
+			//Lanza la actividad ListaLugaresActivity
+			Intent actLista = new Intent(this, ListaLugaresActivity.class);
+			startActivity(actLista);
+			
+			break;
+		case R.id.btnMapa:
+			//Lanza la actividad MapaLugaresActivity
+			Intent actMapa = new Intent(this, MapaLugaresActivity.class);
+			startActivity(actMapa);
+			
+			break;
+		}
 		
 	}
 }

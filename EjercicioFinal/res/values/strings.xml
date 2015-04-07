@@ -3,4 +3,6 @@
     <string name="app_name">EjercicioFinal2</string>
 	<string name="btn_lista">Lista</string>
 	<string name="btn_mapa">Mapa</string>
+	<string name="txt_empty_lugares">No tiene lugares guardados</string>
+	
 </resources>
