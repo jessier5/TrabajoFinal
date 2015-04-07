@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class AdaptadorLugares extends BaseAdapter {
 
 	private LayoutInflater inflador; //Permite crear un objeto Java a partir de un fichero XML
-    TextView nombre, direccion;
+    TextView nombre, descripcion;
     ImageView foto;
     RatingBar valoracion; 
     
@@ -62,36 +62,13 @@ public class AdaptadorLugares extends BaseAdapter {
 	                   inflador.inflate(R.layout.elemento_lista_lugares, null);
 	        }
 	        nombre = (TextView) vistaReciclada.findViewById(R.id.nombre);
-	        direccion =
-	                 (TextView) vistaReciclada.findViewById(R.id.direccion);
+	        descripcion =
+	                 (TextView) vistaReciclada.findViewById(R.id.descripcion);
 	        foto = (ImageView) vistaReciclada.findViewById(R.id.foto);
-	        valoracion =
-	                 (RatingBar) vistaReciclada.findViewById(R.id.valoracion);
 	        nombre.setText(lugar.getNombre());
-	        direccion.setText(lugar.getDireccion());
+	        descripcion.setText(lugar.getDireccion());
 	        int id = R.drawable.ic_launcher;//R.drawable.otros;
-	        switch(lugar.getTipo()) {
-	             case RESTAURANTE: id = R.drawable.ic_launcher;//R.drawable.restaurante; 
-	             		break;         		 
-	             case BAR:    id = R.drawable.ic_launcher;//R.drawable.bar;     
-	             		break;
-	             case COPAS:   id = R.drawable.ic_launcher;//R.drawable.copas;    
-	             		break;
-	             case ESPECTACULO: id = R.drawable.ic_launcher;//R.drawable.espectaculos; 
-	             		break;
-	             case HOTEL: id = R.drawable.ic_launcher;//id = R.drawable.hotel;    
-	             		break;
-	             case COMPRAS: id = R.drawable.ic_launcher;// R.drawable.compras;   
-	             		break;
-	             case EDUCACION: id = R.drawable.ic_launcher; //id = R.drawable.educacion;  
-	             		break;
-	             case DEPORTE: id = R.drawable.ic_launcher;//id = R.drawable.deporte;   
-	             		break;
-	             case NATURALEZA: id = R.drawable.ic_launcher;//R.drawable.naturaleza; 	
-	             		break;
-	             case GASOLINERA: id = R.drawable.ic_launcher;//R.drawable.gasolinera; 
-	             		break;
-	        }
+	        
 	        foto.setImageResource(id);
 	        foto.setScaleType(ImageView.ScaleType.FIT_END);
 	        valoracion.setRating(lugar.getValoracion());
