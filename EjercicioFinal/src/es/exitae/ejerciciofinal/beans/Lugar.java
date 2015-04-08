@@ -1,6 +1,8 @@
 package es.exitae.ejerciciofinal.beans;
 
-public class Lugar {
+import java.io.Serializable;
+
+public class Lugar implements Serializable{
 	
 	// definimos los atributos del bean
 	private int 		id;
