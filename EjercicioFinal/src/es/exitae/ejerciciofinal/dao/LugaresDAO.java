@@ -20,7 +20,7 @@ public class LugaresDAO {
 	 }
 	 /**
 	  * Metodo que inserta un nuevo lugar del usuario
-	  * @param LugarBean
+	  * @param Lugar
 	  * */
 	 public  long  insert(Lugar lugar){
 		 ContentValues values = new ContentValues();
@@ -35,7 +35,7 @@ public class LugaresDAO {
 	 }
 	 /**
 	  * Metodo que devuelve un listado de lugares del usuario
-	  * @param LugarBean
+	  * @param Lugar
 	  * */
 	 public List<Lugar> selectAll(){
 		 List<Lugar> lugares=new ArrayList<Lugar>();		 
@@ -53,12 +53,37 @@ public class LugaresDAO {
 			 
 			 lugares.add(lugar);
 		 }
-		 
 		 return lugares;
 	 }
+	 
+	 /**
+	  * Metodo que devuelve un listado de lugares del usuario
+	  * @param Lugar
+	  * */	 
+	 public Lugar findLugarId(String idLugar){
+		 Lugar lugar = null;
+		 String query="Select * from "+LugaresDataSourceContract.TABLE_NAME+" "
+		 			  + "where "+LugaresDataSourceContract.ColumnLugares.ID_LUGAR+"=?";
+		 Cursor cLugares=database.rawQuery(query, new String[]{idLugar});
+		 
+		 if(cLugares.moveToNext()){
+			 lugar = new Lugar();
+			 lugar.setId(cLugares.getInt(0));
+			 lugar.setNombreLugar(cLugares.getString(1));
+			 lugar.setDescrLugar(cLugares.getString(2));
+			 lugar.setLatitud(cLugares.getFloat(3));
+			 lugar.setLongitud(cLugares.getFloat(4));
+			 lugar.setFoto(cLugares.getString(5));
+		 }
+		 		 
+		 return lugar;
+		 
+	 }
+	 
+	 
 	 /**
 	  * Metodo que actualiza un lugar del usuario
-	  * @param LugarBean
+	  * @param Lugar
 	  * */
 	 public int update(Lugar dataWhere, Lugar LugarNuevo){
 		 //
@@ -109,7 +134,7 @@ public class LugaresDAO {
 	 }
 	 /**
 	  * Metodo que elimina un lugar del usuario
-	  * @param LugarBean
+	  * @param Lugar
 	  * */
 	 public int delete(Lugar lugar){
 		 //declaramos las variables que contendran los datos
