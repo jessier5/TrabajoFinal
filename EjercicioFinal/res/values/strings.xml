@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">EjercicioFinal2</string>
-    <string name="btn_lista">Lista</string>
-    <string name="btn_mapa">Mapa</string>
-    <string name="txt_empty_lugares">No tiene lugares guardados</string>
-    <string name="title_activity_mostrar_lugar">MostrarLugarActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Ejercicio Final</string>
+	<string name="btn_lista">Lista</string>
+	<string name="btn_mapa">Mapa</string>
+	<string name="btn_guardar_lugar">Guardar</string>
+	<string name="txt_empty_lugares">No tiene lugares guardados</string>
+	<string name="txt_nombre_lugar">Nombre</string>
+	<string name="txt_nombre_lugar_hint">Escribe el nombre del lugar</string>
+	<string name="txt_descripcion_lugar">Descripcion</string>
+	<string name="txt_descripcion_lugar_hint">Escribe la descripcion del lugar</string>
 
 </resources>
