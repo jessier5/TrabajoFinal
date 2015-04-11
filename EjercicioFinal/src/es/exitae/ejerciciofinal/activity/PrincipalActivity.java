@@ -1,6 +1,5 @@
 package es.exitae.ejerciciofinal.activity;
 
-import es.exitae.ejerciciofinal.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import es.exitae.ejerciciofinal.R;
 
 public class PrincipalActivity extends Activity implements OnClickListener {
 	

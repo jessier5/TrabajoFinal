@@ -4,10 +4,9 @@
 
 package es.exitae.ejerciciofinal.activity;
 
-import es.exitae.ejerciciofinal.R;
 import android.app.ListActivity;
-
 import android.os.Bundle;
+import es.exitae.ejerciciofinal.R;
 
 
 public class ListaLugaresActivity extends ListActivity {
