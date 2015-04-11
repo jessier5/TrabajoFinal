@@ -10,5 +10,9 @@
 	<string name="txt_nombre_lugar_hint">Escribe el nombre del lugar</string>
 	<string name="txt_descripcion_lugar">Descripcion</string>
 	<string name="txt_descripcion_lugar_hint">Escribe la descripcion del lugar</string>
-
+	<string name="title_activity_mostrar_lugar">MostrarLugarActivity</string>
+	<string name="title_activity_lista_lugares">ListaLugaresActivity</string>
+	<string name="title_activity_editar_lugar">EditarLugarActivity</string>
+	<string name="title_activity_lugares_activity">MapaLugaresActivity</string>
+	
 </resources>
