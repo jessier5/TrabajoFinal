@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -97,6 +98,10 @@ public class MapaLugaresActivity extends Activity
 	public boolean onMarkerClick(Marker arg0) {
 		// esto se ejecutara cuando el usuario de un click en cualquiera de los lugares existentes
 		// y se debera ejecutar la activity editar lugar para su edicion
+		
+		
+		
+		
 		return false;
 		
 	}
@@ -109,11 +114,18 @@ public class MapaLugaresActivity extends Activity
 	public void onProviderDisabled(String provider) {}
 
 	@Override
-	public void onMapClick(LatLng arg0) {
+	public void onMapClick(LatLng coordenadas) {
 		// esto se ejecuta cuando el usuario da click en cualquier lugar del mapa
 		// con lo que se tendra que ejecutar el activity Editar lugar pero para crear 
 		// un nuevo lugar para el usuario
 		
+		Intent crearLugar = new Intent(this, EditarLugarActivity.class);
+		Lugar lugar = new Lugar();
+		lugar.setLatitud((long)coordenadas.latitude);
+		lugar.setLongitud((long)coordenadas.longitude);
+		crearLugar.putExtra("lugar",lugar);
+		crearLugar.putExtra("crear", true);
+		startActivity(crearLugar);
 	}
 
 }
