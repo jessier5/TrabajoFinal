@@ -82,10 +82,7 @@ public class MapaLugaresActivity extends Activity
 							              .title(lugar.getNombreLugar())
 							              .icon(BitmapDescriptorFactory 
 							              .fromResource(R.drawable.flag)));
-			
 		}
-		
-		
 	}
 	 
 	@Override
@@ -95,14 +92,23 @@ public class MapaLugaresActivity extends Activity
 	@Override
 	public void onMarkerDragStart(Marker arg0) {}
 	@Override
-	public boolean onMarkerClick(Marker arg0) {
+	public boolean onMarkerClick(Marker datos) {
 		// esto se ejecutara cuando el usuario de un click en cualquiera de los lugares existentes
 		// y se debera ejecutar la activity editar lugar para su edicion
 		
-		
-		
-		
-		return false;
+		for(Lugar lugar: Lugares){
+			if(lugar.getNombreLugar().equals(datos.getTitle()) &&
+			   lugar.getLatitud()==(long)datos.getPosition().latitude &&
+			   lugar.getLongitud() == (long)datos.getPosition().longitude){
+				
+				Intent modiLugar = new Intent(this, EditarLugarActivity.class);
+				modiLugar.putExtra("lugar",lugar);
+				modiLugar.putExtra("crear", false);
+				startActivity(modiLugar);
+				break;
+			}
+		}
+		return true;
 		
 	}
 	

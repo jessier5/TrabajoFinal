@@ -1,13 +1,17 @@
 package es.exitae.ejerciciofinal.activity;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
@@ -25,8 +29,8 @@ public class EditarLugarActivity extends Activity {
 	private EditText txtDescripcion;
 	private EditText txtLatitud;
 	private EditText txtLongitud;
-	private ImageView	 iFoto;
-	private URL		  urlFoto;
+	private ImageView	iFoto;
+	private URL		  	urlFoto;
 	private Bitmap loadedImage;
 	private Boolean isCrear = false;
 
@@ -59,12 +63,33 @@ public class EditarLugarActivity extends Activity {
 		
 		if(this.isCrear){
 			// si es crear rellenamos las coordenadas en los txt
+			this.txtLatitud.setText(String.valueOf(lugar.getLatitud()));
+			this.txtLongitud.setText(String.valueOf(lugar.getLongitud()));
 		}
 		else{
 			// en caso contrario rellenamos todos los datos 
+			this.txtNombre.setText(lugar.getNombreLugar());
+			this.txtDescripcion.setText(lugar.getDescrLugar());
+			this.txtLongitud.setText(String.valueOf(lugar.getLongitud()));
+			this.txtLatitud.setText(String.valueOf(lugar.getLatitud()));
+			
+			//Cargamos la imagen desde la url
+			try{
+				this.urlFoto=new URL(lugar.getFoto());
+				HttpURLConnection conn = (HttpURLConnection) this.urlFoto.openConnection();
+		        conn.connect();
+		        this.loadedImage = BitmapFactory.decodeStream(conn.getInputStream());
+				this.iFoto.setImageBitmap(loadedImage);
+			} catch (IOException e) {
+	            Toast.makeText(getApplicationContext(), "Error cargando la imagen: "+e.getMessage(), Toast.LENGTH_LONG).show();
+	            e.printStackTrace();
+	        }
 		}
 		
 	}
+	/**
+	 * metodo que se encarga de visualizar los botones
+	 * */
 	public void visualizaBotones(){
 		if(this.isCrear){
 			this.btnEliminar.setVisibility(0);
