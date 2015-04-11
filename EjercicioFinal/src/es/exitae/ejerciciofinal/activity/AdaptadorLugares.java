@@ -3,6 +3,7 @@ package es.exitae.ejerciciofinal.activity;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class AdaptadorLugares extends BaseAdapter {
     private List<Lugar> Lugares;
     
     public AdaptadorLugares(Context contexto) {
+    	Log.d("++++ Iniciando adpatador: ", Thread.currentThread().getName());
         inflador = (LayoutInflater) contexto
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.db=new LugaresDAO(contexto);
