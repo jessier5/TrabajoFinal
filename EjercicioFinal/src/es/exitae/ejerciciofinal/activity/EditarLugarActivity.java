@@ -1,22 +1,27 @@
 package es.exitae.ejerciciofinal.activity;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
 
-public class EditarLugarActivity extends Activity {
+public class EditarLugarActivity extends Activity implements OnClickListener{
 	
 	//variable que no permitira acceder a la base de datos
 	private LugaresDAO 	db;
@@ -30,9 +35,10 @@ public class EditarLugarActivity extends Activity {
 	private EditText txtLatitud;
 	private EditText txtLongitud;
 	private ImageView	iFoto;
-	private URL		  	urlFoto;
+	private URI		  	uriFoto;
 	private Bitmap loadedImage;
 	private Boolean isCrear = false;
+	private static int SELECT_PICTURE = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +80,7 @@ public class EditarLugarActivity extends Activity {
 			this.txtLatitud.setText(String.valueOf(lugar.getLatitud()));
 			
 			//Cargamos la imagen desde la url
-			try{
-				this.urlFoto=new URL(lugar.getFoto());
-				HttpURLConnection conn = (HttpURLConnection) this.urlFoto.openConnection();
-		        conn.connect();
-		        this.loadedImage = BitmapFactory.decodeStream(conn.getInputStream());
-				this.iFoto.setImageBitmap(loadedImage);
-			} catch (IOException e) {
-	            Toast.makeText(getApplicationContext(), "Error cargando la imagen: "+e.getMessage(), Toast.LENGTH_LONG).show();
-	            e.printStackTrace();
-	        }
+			this.mostrarImagen(Uri.parse(lugar.getFoto()));
 		}
 		
 	}
@@ -102,4 +99,41 @@ public class EditarLugarActivity extends Activity {
 			this.btnCrear.setVisibility(0);
 		}
 	}
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()){
+			case R.id.imgFoto: 
+				// si se hace click en la imagen mostramos la galeria
+				Intent igaleria = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+				startActivityForResult(igaleria, SELECT_PICTURE);
+			break;
+		}
+		
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		if (requestCode == SELECT_PICTURE){
+			//mostramos la imagen seleccionada
+    		Uri selectedImage = data.getData();
+    		this.mostrarImagen(selectedImage);
+    		this.lugar.setFoto(selectedImage.toString());
+    	}
+	}
+	//Metodo que muestra la imagen
+	public void mostrarImagen(Uri uriImg){
+		Uri selectedImage = uriImg; //data.getData();
+		InputStream is;
+		try {
+			is = getContentResolver().openInputStream(selectedImage);
+	    	BufferedInputStream bis = new BufferedInputStream(is);
+	    	Bitmap bitmap = BitmapFactory.decodeStream(bis);            
+	    	ImageView iv = (ImageView)findViewById(R.id.imgFoto);
+	    	iv.setImageBitmap(bitmap);	
+	    		    	
+		} catch (FileNotFoundException e) {}
+		
+	}
+	
 }
