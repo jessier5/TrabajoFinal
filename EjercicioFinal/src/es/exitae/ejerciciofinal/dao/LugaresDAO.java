@@ -85,7 +85,7 @@ public class LugaresDAO {
 	  * Metodo que actualiza un lugar del usuario
 	  * @param Lugar
 	  * */
-	 public int update(Lugar dataWhere, Lugar LugarNuevo){
+	 public int update(Lugar upLugar){
 		 //
 		 ContentValues values = new ContentValues();
 		 
@@ -93,42 +93,15 @@ public class LugaresDAO {
 		 String where	 ="";
 		 
 		 //seteamos los nuevos valores para el lugar
-		 if(LugarNuevo.getNombreLugar()!=null && 
-		    !LugarNuevo.getNombreLugar().equals("")){
-			 values.put(LugaresDataSourceContract.ColumnLugares.NOMBRE_LUGAR, LugarNuevo.getNombreLugar());
-		 }
-		 if(LugarNuevo.getDescrLugar()!=null && 
-			!LugarNuevo.getDescrLugar().equals("")){
-			 values.put(LugaresDataSourceContract.ColumnLugares.DESCRIPCION_LUGAR, LugarNuevo.getDescrLugar());
-		 }
-		 if(String.valueOf(LugarNuevo.getLatitud())!=null && 
-			String.valueOf(LugarNuevo.getLatitud()).length()>0){
-			 values.put(LugaresDataSourceContract.ColumnLugares.LATITUD_LUGAR, LugarNuevo.getLatitud());
-		 }
-		 if(String.valueOf(LugarNuevo.getLongitud())!=null && 
-			String.valueOf(LugarNuevo.getLongitud()).length()>0){
-			 values.put(LugaresDataSourceContract.ColumnLugares.LONGITUD_LUGAR, LugarNuevo.getLongitud());
-		 }
-		 if(LugarNuevo.getFoto()!=null && 
-			!LugarNuevo.getFoto().equals("")){
-			 values.put(LugaresDataSourceContract.ColumnLugares.FOTO_LUGAR, LugarNuevo.getFoto());
-		 }
-		 // indicamos los valores que iran en el where
-		 
-		//Verificamos si nos viene informado el ID
-		 if(Integer.valueOf(dataWhere.getId())!=null){
-			 selection=LugaresDataSourceContract.ColumnLugares.ID_LUGAR+" =?";
-			 where=String.valueOf(dataWhere.getId());
-		 }
-		 //Verificamos si nos viene informado el Nombre del Lugar
-		 if(dataWhere.getNombreLugar() !=null && 
-		    !dataWhere.getNombreLugar().equals("")){
-			 selection=selection.equals("")?
-					 	LugaresDataSourceContract.ColumnLugares.NOMBRE_LUGAR+" = ?":
-					 	selection+" and "+LugaresDataSourceContract.ColumnLugares.NOMBRE_LUGAR+" =?";
-			 where=where.equals("")?dataWhere.getNombreLugar():where+","+dataWhere.getNombreLugar();
-		 }
-		 
+	 
+		 values.put(LugaresDataSourceContract.ColumnLugares.NOMBRE_LUGAR, upLugar.getNombreLugar());	 
+		 values.put(LugaresDataSourceContract.ColumnLugares.DESCRIPCION_LUGAR, upLugar.getDescrLugar());
+	 	 //values.put(LugaresDataSourceContract.ColumnLugares.LATITUD_LUGAR, upLugar.getLatitud());
+	 	 //values.put(LugaresDataSourceContract.ColumnLugares.LONGITUD_LUGAR, upLugar.getLongitud());
+	 	 values.put(LugaresDataSourceContract.ColumnLugares.FOTO_LUGAR, upLugar.getFoto());
+	
+		 selection=LugaresDataSourceContract.ColumnLugares.ID_LUGAR+" =?";
+		 where=String.valueOf(upLugar.getId());
 		 String [] datosWhere={where};	
 		 return this.database.update(LugaresDataSourceContract.TABLE_NAME, values, selection, datosWhere);
 	 }
