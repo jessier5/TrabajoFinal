@@ -107,6 +107,17 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 				Intent igaleria = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
 				startActivityForResult(igaleria, SELECT_PICTURE);
 			break;
+			case R.id.btnGuardar: 
+				this.asignaDatos();
+				this.updateLugar();
+			break;
+			case R.id.btnCrear: 
+				this.asignaDatos();
+				this.crearLugar();
+			break;
+			case R.id.btbEliminar: 
+				this.eliminar();
+			break;
 		}
 		
 	}
@@ -134,6 +145,19 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	    		    	
 		} catch (FileNotFoundException e) {}
 		
+	}
+	public void asignaDatos(){
+		this.lugar.setDescrLugar(this.txtNombre.getText().toString());
+		this.lugar.setNombreLugar(this.txtDescripcion.getText().toString());
+	}
+	public void updateLugar(){
+		this.db.update(this.lugar);
+	}
+	public void crearLugar(){
+		this.db.insert(this.lugar);
+	}
+	public void eliminar(){
+		this.db.delete(this.lugar);
 	}
 	
 }
