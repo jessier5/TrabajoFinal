@@ -41,12 +41,16 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 		this.db=new LugaresDAO(this);
 		//inicializamos lass variabes de la ventana
 		
-		this.btnEditar = (Button) findViewById(R.id.btnEditarLugar);
-		this.txtNombre = (EditText) findViewById(R.id.txtNomLugar);
-		this.txtDescripcion = (EditText) findViewById(R.id.txtDescripcion);
-		this.txtLatitud = (EditText) findViewById(R.id.txtLatitud);
-		this.txtLongitud = (EditText) findViewById(R.id.txtLongitud);
-		this.iFoto		= (ImageView)findViewById(R.id.imgFoto);
+		btnEditar = (Button) findViewById(R.id.btnEditarLugar);
+		btnEditar.setOnClickListener(this);
+		
+		txtNombre = (EditText) findViewById(R.id.txtNomLugar);
+		txtDescripcion = (EditText) findViewById(R.id.txtDescripcion);
+		txtLatitud = (EditText) findViewById(R.id.txtLatitud);
+		txtLongitud = (EditText) findViewById(R.id.txtLongitud);
+		
+		iFoto		= (ImageView)findViewById(R.id.imgFoto);
+		iFoto.setOnClickListener(this);
 		
 		this.cargaDatosLugar();
 	}

@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
@@ -45,18 +46,27 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editar_lugares);
 		this.db=new LugaresDAO(this);
-		//inicializamos lass variabes de la ventana		
-		this.txtNombre 		= (EditText) findViewById(R.id.txtNomLugar);
-		this.txtDescripcion = (EditText) findViewById(R.id.txtDescripcion);
-		this.txtLatitud 	= (EditText) findViewById(R.id.txtLatitud);
-		this.txtLongitud 	= (EditText) findViewById(R.id.txtLongitud);
-		this.iFoto			= (ImageView)findViewById(R.id.imgFoto);
 		
-		this.btnGuardar 	= (Button) findViewById(R.id.btnGuardar);
-		this.btnCrear 		= (Button) findViewById(R.id.btnCrear);
-		this.btnEliminar 	= (Button) findViewById(R.id.btbEliminar);
-		this.cargaDatosExtras();
-		this.visualizaBotones();
+		//inicializamos lass variabes de la ventana		
+		txtNombre 		= (EditText) findViewById(R.id.txtNomLugar);
+		txtDescripcion = (EditText) findViewById(R.id.txtDescripcion);
+		txtLatitud 	= (EditText) findViewById(R.id.txtLatitud);
+		txtLongitud 	= (EditText) findViewById(R.id.txtLongitud);
+		
+		iFoto			= (ImageView)findViewById(R.id.imgFoto);
+		iFoto.setOnClickListener(this);
+		
+		btnGuardar 	= (Button) findViewById(R.id.btnGuardar);
+		btnGuardar.setOnClickListener(this);
+		
+		btnCrear 		= (Button) findViewById(R.id.btnCrear);
+		btnCrear.setOnClickListener(this);
+		
+		btnEliminar 	= (Button) findViewById(R.id.btnEliminar);
+		btnEliminar.setOnClickListener(this);
+		
+		cargaDatosExtras();
+		
 		
 	}
 	/**
@@ -65,14 +75,18 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	 * */
 	public void cargaDatosExtras(){
 		this.lugar	= (Lugar) getIntent().getExtras().getSerializable("lugar");
-		this.isCrear=getIntent().getExtras().getBoolean("crear");
+		this.isCrear = getIntent().getExtras().getBoolean("crear");
 		
 		if(this.isCrear){
+			
+			visualizaBotones();
 			// si es crear rellenamos las coordenadas en los txt
 			this.txtLatitud.setText(String.valueOf(lugar.getLatitud()));
 			this.txtLongitud.setText(String.valueOf(lugar.getLongitud()));
+			
 		}
 		else{
+			//this.visualizaBotones();
 			// en caso contrario rellenamos todos los datos 
 			this.txtNombre.setText(lugar.getNombreLugar());
 			this.txtDescripcion.setText(lugar.getDescrLugar());
@@ -88,15 +102,16 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	 * metodo que se encarga de visualizar los botones
 	 * */
 	public void visualizaBotones(){
+		
 		if(this.isCrear){
-			this.btnEliminar.setVisibility(0);
-			this.btnGuardar.setVisibility(0);
-			this.btnCrear.setVisibility(1);
+			btnEliminar.setVisibility(View.INVISIBLE);
+			btnGuardar.setVisibility(View.INVISIBLE);
+			btnCrear.setVisibility(View.VISIBLE);
 		}
 		else{
-			this.btnEliminar.setVisibility(1);
-			this.btnGuardar.setVisibility(1);
-			this.btnCrear.setVisibility(0);
+			btnEliminar.setVisibility(View.VISIBLE);
+			btnGuardar.setVisibility(View.VISIBLE);
+			btnCrear.setVisibility(View.INVISIBLE);
 		}
 	}
 	@Override
@@ -114,8 +129,9 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 			case R.id.btnCrear: 
 				this.asignaDatos();
 				this.crearLugar();
+				
 			break;
-			case R.id.btbEliminar: 
+			case R.id.btnEliminar: 
 				this.eliminar();
 			break;
 		}
@@ -155,6 +171,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	}
 	public void crearLugar(){
 		this.db.insert(this.lugar);
+		Toast.makeText(this, " Lugar se ha creado correctamente ",Toast.LENGTH_SHORT).show();
 	}
 	public void eliminar(){
 		this.db.delete(this.lugar);

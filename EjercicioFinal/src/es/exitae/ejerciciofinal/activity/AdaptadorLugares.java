@@ -3,9 +3,11 @@ package es.exitae.ejerciciofinal.activity;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -20,12 +22,16 @@ public class AdaptadorLugares extends BaseAdapter {
 	private LayoutInflater inflador; //Permite crear un objeto Java a partir de un fichero XML
     private TextView  nombre, descripcion;
     private ImageView foto;
-    private RatingBar valoracion; 
+ 
     // variable para la conexion a la base de datos
     private LugaresDAO db;
     private List<Lugar> Lugares;
     
+    Context ctx = null;
+    
     public AdaptadorLugares(Context contexto) {
+    	
+    	ctx = contexto;
     	Log.d("++++ Iniciando adpatador: ", Thread.currentThread().getName());
         inflador = (LayoutInflater) contexto
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,8 +88,17 @@ public class AdaptadorLugares extends BaseAdapter {
 	        
 	        foto.setImageResource(id);
 	        foto.setScaleType(ImageView.ScaleType.FIT_END);
+	        foto.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					//Lanza la actividad EditarLugarActivity
+					Intent editarLugar = new Intent(ctx, EditarLugarActivity.class);
+					ctx.startActivity(editarLugar);
+					
+				}
+			});
 	        //valoracion.setRating(lugar.getValoracion());
 	        return vistaReciclada;
 	}
-
 }
