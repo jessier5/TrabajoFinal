@@ -128,7 +128,6 @@ public class MapaLugaresActivity extends FragmentActivity
 		// con lo que se tendra que ejecutar el activity Editar lugar pero para crear 
 		// un nuevo lugar para el usuario
 		
-		Toast.makeText(this, coordenadas.latitude + " , " + coordenadas.longitude, Toast.LENGTH_SHORT).show();
 		Log.d("++++ onMapClick ", Thread.currentThread().getName());
 		
 		Intent crearLugar = new Intent(this, EditarLugarActivity.class);
