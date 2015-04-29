@@ -31,6 +31,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	private Button 	 btnGuardar;
 	private Button 	 btnCrear;
 	private Button 	 btnEliminar;
+	private Button   btnSalir;
 	private EditText txtNombre;
 	private EditText txtDescripcion;
 	private EditText txtLatitud;
@@ -64,6 +65,9 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		
 		btnEliminar 	= (Button) findViewById(R.id.btnEliminar);
 		btnEliminar.setOnClickListener(this);
+		
+		btnSalir = (Button) findViewById(R.id.btnSalir);
+		btnSalir.setOnClickListener(this);
 		
 		cargaDatosExtras();
 		
@@ -107,10 +111,12 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 			btnEliminar.setVisibility(View.INVISIBLE);
 			btnGuardar.setVisibility(View.INVISIBLE);
 			btnCrear.setVisibility(View.VISIBLE);
+			btnSalir.setVisibility(View.VISIBLE);
 		}
 		else{
 			btnEliminar.setVisibility(View.VISIBLE);
 			btnGuardar.setVisibility(View.VISIBLE);
+			btnSalir.setVisibility(View.VISIBLE);
 			btnCrear.setVisibility(View.INVISIBLE);
 		}
 	}
@@ -121,19 +127,25 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 				// si se hace click en la imagen mostramos la galeria
 				Intent igaleria = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
 				startActivityForResult(igaleria, SELECT_PICTURE);
-			break;
-			case R.id.btnGuardar: 
-				this.asignaDatos();
-				this.updateLugar();
-			break;
-			case R.id.btnCrear: 
-				this.asignaDatos();
-				this.crearLugar();
+				break;
 				
-			break;
+			case R.id.btnGuardar: 
+				asignaDatos();
+				updateLugar();
+				break;
+				
+			case R.id.btnCrear: 
+				asignaDatos();
+				crearLugar();		
+				break;
+				
 			case R.id.btnEliminar: 
-				this.eliminar();
-			break;
+				eliminar();
+				break;
+				
+			case R.id.btnSalir:
+				System.exit(0);
+				break;
 		}
 		
 	}
