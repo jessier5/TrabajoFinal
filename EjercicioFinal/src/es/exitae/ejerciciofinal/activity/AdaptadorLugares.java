@@ -2,6 +2,7 @@ package es.exitae.ejerciciofinal.activity;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -17,7 +18,7 @@ import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
 
-public class AdaptadorLugares extends BaseAdapter {
+public class AdaptadorLugares extends BaseAdapter implements OnClickListener{
 	//creamos las variables necesarias 
 	private LayoutInflater inflador; //Permite crear un objeto Java a partir de un fichero XML
     private TextView  nombre, descripcion;
@@ -27,14 +28,15 @@ public class AdaptadorLugares extends BaseAdapter {
     private LugaresDAO db;
     private List<Lugar> Lugares;
     
-    Context ctx = null;
+    private Context context;
     
     public AdaptadorLugares(Context contexto) {
     	
-    	ctx = contexto;
+    	inflador = LayoutInflater.from(contexto);
+    	this.context = (Activity) this.context;
     	Log.d("++++ Iniciando adpatador: ", Thread.currentThread().getName());
-        inflador = (LayoutInflater) contexto
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	Log.d("++++ contexto: ", contexto.toString());
+        //inflador = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.db=new LugaresDAO(contexto);
         this.Lugares=db.selectAll();
     }
@@ -67,38 +69,55 @@ public class AdaptadorLugares extends BaseAdapter {
 	/**
 	 * Vista que usa el sistema para pedir cada uno de los elementos a insertar
 	 * @param posicion Posición del elemento a insertar.
-	 * @param vistaReciclada Vista con la información adecuada del elemento a insertar.
+	 * @param convertView Vista con la información adecuada del elemento a insertar.
 	 * @param padre	Layout contenedor donde se insertará el elemento.
-	 * @return vistaReciclada 
+	 * @return convertView 
 	 */
 	@Override
-	public View getView(int posicion, View vistaReciclada, ViewGroup padre) {
-		 Lugar lugar = Lugares.get(posicion);
-	        if (vistaReciclada == null) {
-	            vistaReciclada =
-	                   inflador.inflate(R.layout.elemento_lista_lugares, null);
-	        }
-	        nombre = (TextView) vistaReciclada.findViewById(R.id.nombre);
-	        descripcion =
-	                 (TextView) vistaReciclada.findViewById(R.id.descripcion);
-	        foto = (ImageView) vistaReciclada.findViewById(R.id.foto);
-	        nombre.setText(lugar.getNombreLugar());
-	        descripcion.setText(lugar.getDescrLugar());
-	        int id = R.drawable.ic_launcher;//R.drawable.otros;
-	        
-	        foto.setImageResource(id);
-	        foto.setScaleType(ImageView.ScaleType.FIT_END);
-	        foto.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					//Lanza la actividad EditarLugarActivity
-					Intent editarLugar = new Intent(ctx, EditarLugarActivity.class);
-					ctx.startActivity(editarLugar);
-					
-				}
-			});
-	        //valoracion.setRating(lugar.getValoracion());
-	        return vistaReciclada;
+	public View getView(int posicion, View convertView, ViewGroup parent) {
+		
+		View view;
+		ViewHolder holder;
+		
+	     if (convertView == null) {
+	    	 view = inflador.inflate(R.layout.elemento_lista_lugares, parent, false);
+	    	 holder = new ViewHolder();
+	    	 holder.foto = (ImageView) view.findViewById(R.id.foto);
+	    	 holder.foto.setOnClickListener(this);
+	    	 
+	    	 holder.nombre = (TextView) view.findViewById(R.id.nombre);
+	    	 holder.nombre.setOnClickListener(this);
+	    	 
+	    	 holder.descripcion = (TextView) view.findViewById(R.id.descripcion);
+	    	 holder.descripcion.setOnClickListener(this);
+	    	 
+	    	 view.setTag(holder);
+	     }
+	     else{
+	    	 view = convertView;
+			 holder = (ViewHolder)view.getTag();
+	     }
+	     
+	     Lugar lugar = Lugares.get(posicion);
+	    // holder.foto.setImageBitmap(lugar.getFoto());
+	     holder.nombre.setText(lugar.getNombreLugar());  
+	     holder.descripcion.setText(lugar.getDescrLugar());   
+	       
+	     return view;
+	}
+	
+	private class ViewHolder {
+		public ImageView foto;
+		public TextView nombre, descripcion;
+	}
+
+	@Override
+	public void onClick(View v) {	
+		//Lanza la actividad EditarLugarActivity
+		Log.d("++++ onClick: ", this.context.toString());
+		Intent editarLugar = new Intent(this.context, EditarLugarActivity.class);
+		context.startActivity(editarLugar);
+		
 	}
 }
+
