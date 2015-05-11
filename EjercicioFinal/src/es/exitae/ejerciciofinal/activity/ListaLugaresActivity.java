@@ -5,8 +5,14 @@
 package es.exitae.ejerciciofinal.activity;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 import es.exitae.ejerciciofinal.R;
+import es.exitae.ejerciciofinal.beans.Lugar;
 
 
 public class ListaLugaresActivity extends ListActivity {
@@ -23,7 +29,20 @@ public class ListaLugaresActivity extends ListActivity {
 		
 		adaptador= new AdaptadorLugares(this);
 		//Indicar el adaptador con la lista de elementos a visualizar
-	    setListAdapter(adaptador);
+		setListAdapter(adaptador);
+	   
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+	    Lugar lugar = (Lugar) getListAdapter().getItem(position);
+	    //Toast.makeText(this, lugar.getNombreLugar() + " selected", Toast.LENGTH_LONG).show();
+	    Log.d("++++ onClick: ", this.toString());
+		Intent mostrarLugar = new Intent(this, MostrarLugarActivity.class);
+		mostrarLugar.putExtra("lugar",lugar);
+		mostrarLugar.putExtra("crear", false);
+		this.startActivity(mostrarLugar);
 		
 	}
+	
 }
