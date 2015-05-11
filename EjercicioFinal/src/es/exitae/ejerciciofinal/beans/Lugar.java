@@ -10,7 +10,7 @@ public class Lugar implements Serializable{
 	private String descrLugar;
 	private float   latitud;
 	private float 	longitud;
-	private String foto;
+	private String foto=null;
 	public int getId() {
 		return id;
 	}
