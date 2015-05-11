@@ -32,12 +32,14 @@ public class PrincipalActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.btnLista:
+			Log.d("++++ Llamando a ListaLugaresActivity: ", Thread.currentThread().getName());
 			//Lanza la actividad ListaLugaresActivity
 			Intent actLista = new Intent(this, ListaLugaresActivity.class);
 			startActivity(actLista);
 			
 			break;
 		case R.id.btnMapa:
+			Log.d("++++ Llamando a MapaLugaresActivity: ", Thread.currentThread().getName());
 			//Lanza la actividad MapaLugaresActivity
 			Intent actMapa = new Intent(this, MapaLugaresActivity.class);
 			startActivity(actMapa);
