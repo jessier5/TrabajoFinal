@@ -43,8 +43,8 @@ public class MapaLugaresActivity extends FragmentActivity
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		Log.d("++++ Iniciando PrincipalActivity: ", Thread.currentThread().getName());
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mapa_lugares);
 		//obtenemos la conexion a la base de datos
 		this.db	=	new LugaresDAO(this);
@@ -77,10 +77,6 @@ public class MapaLugaresActivity extends FragmentActivity
 		}
 	}
 	 
-	
-	
-	
-	
 	@Override
 	public void onLocationChanged(Location location) {
 		Log.d("++++ onLocationChanged ", Thread.currentThread().getName());
