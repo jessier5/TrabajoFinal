@@ -43,12 +43,14 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	private Boolean 	isCrear = false;
 	private static int 	SELECT_PICTURE = 2;
 	private Intent 		igaleria;
+	private AdministrarCamara admCam;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editar_lugares);
 		this.db=new LugaresDAO(this);
+		this.admCam = new AdministrarCamara(this);
 		//inicializamos lass variabes de la ventana		
 		txtNombre 		= (EditText) findViewById(R.id.txtNomLugar);
 		txtDescripcion 	= (EditText) findViewById(R.id.txtDescripcion);
@@ -91,7 +93,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
 		
 		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
-			 this.asignarFotoView();
+			 this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400);
 		} 
 	}
 	
@@ -101,68 +103,9 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		Toast.makeText(this, "onActivityResult: "+resultCode+", requestCode: "+requestCode,Toast.LENGTH_SHORT).show();
 		if(resultCode ==RESULT_OK){
 			this.lugar.setFoto(data.getDataString());
-			this.asignarFotoView();
+			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400);
     	}
 	}
-	
-	public void asignarFotoView(){
-		BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        InputStream is = null;
-        try {
-            is = getContentResolver().openInputStream(Uri.parse(this.lugar.getFoto()));
-            BitmapFactory.decodeStream(is, null, options);
-            is.close();
- 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //this.generalOptions = options;
-
-		/* Associate the Bitmap to the ImageView */
-		this.iFoto.setImageBitmap(scaleImage(options,Uri.parse(this.lugar.getFoto()),300));
-	}
-	
-	//escalando imagen
-	public Bitmap scaleImage(BitmapFactory.Options options, Uri uri, int targetWidth) {
-        
-        Bitmap bitmap = null;
-        double ratioWidth = ((float) targetWidth) / (float) options.outWidth;
-        double ratioHeight = ((float) targetWidth) / (float) options.outHeight;
-        double ratio = Math.min(ratioWidth, ratioHeight);
-        int dstWidth = (int) Math.round(ratio * options.outWidth);
-        int dstHeight = (int) Math.round(ratio * options.outHeight);
-        ratio = Math.floor(1.0 / ratio);
-        int sample = nearest2pow((int) ratio);
- 
-        options.inJustDecodeBounds = false;
-        if (sample <= 0) {
-            sample = 1;
-        }
-        options.inSampleSize = (int) sample;
-        options.inPurgeable = true;
-        try {
-            InputStream is;
-            is = getContentResolver().openInputStream(uri);
-            bitmap = BitmapFactory.decodeStream(is, null, options);
-            Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap, dstWidth,
-                    dstHeight, true);
-            bitmap = bitmap2;
-            is.close();
-        } catch (OutOfMemoryError e) {
-            e.printStackTrace();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
- 
-        return bitmap;
-    }
-	
-	public static int nearest2pow(int value) {
-        return value == 0 ? 0  : (32 - Integer.numberOfLeadingZeros(value - 1)) / 2;
-    }
 	
 	public void asignaDatos(){
 		this.lugar.setDescrLugar(this.txtNombre.getText().toString());
@@ -217,7 +160,6 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 			case R.id.btnEliminar: 
 				int resp=this.db.delete(this.lugar);
 				Toast.makeText(this, " Lugar Eliminado: "+resp, Toast.LENGTH_LONG).show();
-				System.exit(0);
 				break;
 				
 			case R.id.btnSalir:

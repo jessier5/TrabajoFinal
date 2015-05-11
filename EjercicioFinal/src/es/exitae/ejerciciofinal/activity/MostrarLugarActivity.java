@@ -35,17 +35,17 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 	private ImageView	 iFoto;
 	private URL		  urlFoto;
 	private Bitmap loadedImage;
-	
+	private AdministrarCamara admCam;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mostrar_lugar);
-		this.db=new LugaresDAO(this);
+		this.db		=	new LugaresDAO(this);
+		this.admCam = 	new AdministrarCamara(this);
 		//inicializamos lass variabes de la ventana
 		
 		btnEditar = (Button) findViewById(R.id.btnEditarLugar);
-		btnEditar.setOnClickListener(this);
 		
 		txtNombre = (EditText) findViewById(R.id.txtNomLugar);
 		txtDescripcion = (EditText) findViewById(R.id.txtDescripcion);
@@ -54,6 +54,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 		
 		iFoto		= (ImageView)findViewById(R.id.imgFoto);
 		iFoto.setOnClickListener(this);
+		btnEditar.setOnClickListener(this);
 		
 		this.cargaDatosLugar();
 	}
@@ -66,19 +67,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 		this.txtLatitud.setText(String.valueOf(lugar.getLatitud()));
 		
 		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
-			Log.d("+++++ this.lugar.getDescrLugar(): ", this.lugar.getDescrLugar());
-			Toast.makeText(this, "lugar.getFoto: "+this.lugar.getFoto(),Toast.LENGTH_SHORT).show();
-			InputStream is;
-			try {
-				is = getContentResolver().openInputStream(Uri.parse(this.lugar.getFoto()));
-				BufferedInputStream bis 	= new BufferedInputStream(is);
-		    	Bitmap			 	bitmap 	= BitmapFactory.decodeStream(bis);            
-		    	this.iFoto.setImageBitmap(bitmap);
-		    	//this.iFoto.setImageURI(Uri.parse(this.lugar.getFoto()));
-		    		    	
-			} catch (FileNotFoundException e) {
-				Log.d("+++++ mostrarImagen: ", "Error a mostrar imagen, "+e.getMessage());
-			}
+			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400);
 		} 
 		
 	}

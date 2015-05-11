@@ -31,6 +31,7 @@ public class AdaptadorLugares extends BaseAdapter {
     private List<Lugar> Lugares;
     
     private Context context;
+    private AdministrarCamara admCam;
     
     public AdaptadorLugares(Context contexto) {
     	
@@ -40,6 +41,7 @@ public class AdaptadorLugares extends BaseAdapter {
     	//inflador = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.db=new LugaresDAO(contexto);
         this.Lugares=db.selectAll();
+        this.admCam = 	new AdministrarCamara(contexto);
     }
     
     
@@ -94,9 +96,12 @@ public class AdaptadorLugares extends BaseAdapter {
 	     }
 	     
 	     Lugar lugar = Lugares.get(posicion);
-	     //holder.foto.setImageBitmap(lugar.getFoto());
 	     holder.nombre.setText(lugar.getNombreLugar());  
-	     holder.descripcion.setText(lugar.getDescrLugar());   
+	     holder.descripcion.setText(lugar.getDescrLugar());
+	     
+	     if (lugar.getFoto()!=null && !lugar.getFoto().equals("")) {
+			 this.admCam.asignarFotoView(holder.foto, lugar.getFoto(), 400);
+		} 
 	       
 	     return view;
 	}
