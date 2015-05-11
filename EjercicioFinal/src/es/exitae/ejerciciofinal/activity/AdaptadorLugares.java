@@ -18,7 +18,9 @@ import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
 
-public class AdaptadorLugares extends BaseAdapter implements OnClickListener{
+public class AdaptadorLugares extends BaseAdapter {
+	
+	//implements OnClickListener
 	//creamos las variables necesarias 
 	private LayoutInflater inflador; //Permite crear un objeto Java a partir de un fichero XML
     private TextView  nombre, descripcion;
@@ -35,8 +37,7 @@ public class AdaptadorLugares extends BaseAdapter implements OnClickListener{
     	inflador = LayoutInflater.from(contexto);
     	this.context = (Activity) this.context;
     	Log.d("++++ Iniciando adpatador: ", Thread.currentThread().getName());
-    	Log.d("++++ contexto: ", contexto.toString());
-        //inflador = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	//inflador = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.db=new LugaresDAO(contexto);
         this.Lugares=db.selectAll();
     }
@@ -83,14 +84,8 @@ public class AdaptadorLugares extends BaseAdapter implements OnClickListener{
 	    	 view = inflador.inflate(R.layout.elemento_lista_lugares, parent, false);
 	    	 holder = new ViewHolder();
 	    	 holder.foto = (ImageView) view.findViewById(R.id.foto);
-	    	 holder.foto.setOnClickListener(this);
-	    	 
 	    	 holder.nombre = (TextView) view.findViewById(R.id.nombre);
-	    	 holder.nombre.setOnClickListener(this);
-	    	 
 	    	 holder.descripcion = (TextView) view.findViewById(R.id.descripcion);
-	    	 holder.descripcion.setOnClickListener(this);
-	    	 
 	    	 view.setTag(holder);
 	     }
 	     else{
@@ -99,7 +94,7 @@ public class AdaptadorLugares extends BaseAdapter implements OnClickListener{
 	     }
 	     
 	     Lugar lugar = Lugares.get(posicion);
-	    // holder.foto.setImageBitmap(lugar.getFoto());
+	     //holder.foto.setImageBitmap(lugar.getFoto());
 	     holder.nombre.setText(lugar.getNombreLugar());  
 	     holder.descripcion.setText(lugar.getDescrLugar());   
 	       
@@ -109,15 +104,6 @@ public class AdaptadorLugares extends BaseAdapter implements OnClickListener{
 	private class ViewHolder {
 		public ImageView foto;
 		public TextView nombre, descripcion;
-	}
-
-	@Override
-	public void onClick(View v) {	
-		//Lanza la actividad EditarLugarActivity
-		Log.d("++++ onClick: ", this.context.toString());
-		Intent editarLugar = new Intent(this.context, EditarLugarActivity.class);
-		context.startActivity(editarLugar);
-		
 	}
 }
 
