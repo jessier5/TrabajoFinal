@@ -1,14 +1,17 @@
 package es.exitae.ejerciciofinal.activity;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -56,24 +59,28 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 	}
 	/** metodo que carga los datos del lugar a traves de un id que nos envian*/
 	public void cargaDatosLugar(){	
-		String idLugar = getIntent().getExtras().getString("id");
-		this.lugar=db.findLugarId(idLugar);
+		this.lugar = (Lugar) getIntent().getExtras().getSerializable("lugar");
 		this.txtNombre.setText(lugar.getNombreLugar());
 		this.txtDescripcion.setText(lugar.getDescrLugar());
 		this.txtLongitud.setText(String.valueOf(lugar.getLongitud()));
 		this.txtLatitud.setText(String.valueOf(lugar.getLatitud()));
 		
-		//Cargamos la imagen desde la url
-		try{
-			this.urlFoto=new URL(lugar.getFoto());
-			HttpURLConnection conn = (HttpURLConnection) this.urlFoto.openConnection();
-	        conn.connect();
-	        this.loadedImage = BitmapFactory.decodeStream(conn.getInputStream());
-			this.iFoto.setImageBitmap(loadedImage);
-		} catch (IOException e) {
-            Toast.makeText(getApplicationContext(), "Error cargando la imagen: "+e.getMessage(), Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
+		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
+			Log.d("+++++ this.lugar.getDescrLugar(): ", this.lugar.getDescrLugar());
+			Toast.makeText(this, "lugar.getFoto: "+this.lugar.getFoto(),Toast.LENGTH_SHORT).show();
+			InputStream is;
+			try {
+				is = getContentResolver().openInputStream(Uri.parse(this.lugar.getFoto()));
+				BufferedInputStream bis 	= new BufferedInputStream(is);
+		    	Bitmap			 	bitmap 	= BitmapFactory.decodeStream(bis);            
+		    	this.iFoto.setImageBitmap(bitmap);
+		    	//this.iFoto.setImageURI(Uri.parse(this.lugar.getFoto()));
+		    		    	
+			} catch (FileNotFoundException e) {
+				Log.d("+++++ mostrarImagen: ", "Error a mostrar imagen, "+e.getMessage());
+			}
+		} 
+		
 	}
 	
 	@Override
