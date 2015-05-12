@@ -1,118 +1,117 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="${relativePackage}.${activityClass}" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/principal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Nombre Lugar: "
-        android:id="@+id/lblNombre"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="34dp" />
+        android:layout_weight="0.92"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical" >
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtNomLugar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBaseline="@+id/lblNombre"
-        android:layout_toRightOf="@+id/lblNombre"
-        android:layout_toEndOf="@+id/lblNombre" />
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="382dp"
+            android:layout_marginTop="10dp"
+            android:padding="20dp"
+            android:stretchColumns="1" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Descripcion: "
-        android:id="@+id/lblDescripcion"
-        android:layout_below="@+id/txtNomLugar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="36dp" />
+            <TableRow android:layout_width="match_parent" >
 
-    <EditText
-        android:id="@+id/txtDescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/lblDescripcion"
-        android:layout_alignEnd="@+id/txtNomLugar"
-        android:layout_alignLeft="@+id/txtNomLugar"
-        android:layout_alignRight="@+id/txtNomLugar" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Lugar: " />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Latitud: "
-        android:id="@+id/lblLatitud"
-        android:layout_below="@+id/txtDescripcion"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp" />
+                <EditText
+                    android:id="@+id/txtNomLugar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp" />
+            </TableRow>
 
-    <EditText
-        android:id="@+id/txtLatitud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/lblLatitud"
-        android:layout_alignEnd="@+id/txtDescripcion"
-        android:layout_alignLeft="@+id/txtDescripcion"
-        android:layout_alignRight="@+id/txtDescripcion" />
+            <TableRow>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Longitud: "
-        android:id="@+id/lblLongitud"
-        android:layout_below="@+id/txtLatitud"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="130dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descripcion: " />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtLongitud"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBaseline="@+id/lblLongitud"
-        android:layout_alignLeft="@+id/txtLatitud"
-        android:layout_alignStart="@+id/txtLatitud" />
+                <EditText
+                    android:id="@+id/txtDescripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp" />
+            </TableRow>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Foto:"
-        android:id="@+id/lblFoto"
-        android:layout_below="@+id/txtLongitud"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="180dp" />
+            <TableRow>
 
-    <ImageView
-        android:id="@+id/imgFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/lblFoto" />
-    
-     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Editar Lugar"
-        android:id="@+id/btnEditarLugar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Latitud: " />
 
-</RelativeLayout>
+                <EditText
+                    android:id="@+id/txtLatitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Longitud: " />
+
+                <EditText
+                    android:id="@+id/txtLongitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/lblFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Foto:" />
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout android:layout_width="fill_parent" >
+
+                    <ImageView
+                        android:id="@+id/imgFoto"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:src="@drawable/camara"
+                        android:visibility="visible" />
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="0dp" >
+
+        <Button
+            android:id="@+id/btnEditarLugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Lugar" />
+    </LinearLayout>
+
+</LinearLayout>

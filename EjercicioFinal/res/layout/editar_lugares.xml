@@ -1,122 +1,133 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="fill_parent"
-     android:layout_height="fill_parent"
-     android:fillViewport="true"
-     android:scrollbars = "vertical"
-     android:scrollbarStyle="insideInset">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/principal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.92"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical" >
      
-	<TableLayout 
-	    android:layout_width="fill_parent" 
-	    android:layout_height="fill_parent" 
-	    android:layout_marginTop="10dp" 
-	    android:stretchColumns="1"
-	    android:padding="20dp">
+		<TableLayout 
+		    android:layout_width="fill_parent" 
+		    android:layout_height="fill_parent" 
+		    android:layout_marginTop="10dp" 
+		    android:stretchColumns="1"
+		    android:padding="20dp">
 
-	    <TableRow android:layout_width="match_parent" >
-
-		    <TextView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="Nombre Lugar: " />
-		    <EditText
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:id="@+id/txtNomLugar"
-		        android:layout_margin="6dp"/>
-		</TableRow>
+		    <TableRow android:layout_width="match_parent" >
 		
-		<TableRow>
-		    <TextView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="Descripcion: " />
-		    <EditText
-		        android:id="@+id/txtDescripcion"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_margin="6dp" />
-		</TableRow>
+			    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Nombre Lugar: " />
+			    <EditText
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:id="@+id/txtNomLugar"
+			        android:layout_margin="6dp"/>
+			</TableRow>
+			
+			<TableRow>
+			    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Descripcion: " />
+			    <EditText
+			        android:id="@+id/txtDescripcion"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_margin="6dp" />
+			</TableRow>
+			
+			<TableRow>
+			    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Latitud: " />
+			
+			    <EditText
+			        android:id="@+id/txtLatitud"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_margin="6dp" />
+			</TableRow>
+			
+			<TableRow>
+			    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Longitud: " />
+			    <EditText
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:id="@+id/txtLongitud"
+			        android:layout_margin="6dp" />
+			</TableRow>
+			
+			<TableRow>
+			    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Foto:"
+			        android:id="@+id/lblFoto" />
 		
-		<TableRow>
-		    <TextView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="Latitud: " />
-		
-		    <EditText
-		        android:id="@+id/txtLatitud"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_margin="6dp" />
-		</TableRow>
-		
-		<TableRow>
-		    <TextView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="Longitud: " />
-		    <EditText
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:id="@+id/txtLongitud"
-		        android:layout_margin="6dp" />
-		</TableRow>
-		
-		<TableRow>
-		    <TextView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="Foto:"
-		        android:id="@+id/lblFoto" />
-	
-	    </TableRow>
-	    
-		<TableRow >
-		  <LinearLayout
-	   	    android:layout_width="fill_parent">
-		    <ImageView
-		         android:id		="@+id/imgFoto"
-		         android:src	="@drawable/camara"
-		         android:visibility="visible"
-		         android:layout_width="fill_parent"
-		         android:layout_height="wrap_content"
-		         android:clickable="true" />
+		    </TableRow>
 		    
-			</LinearLayout>
-		</TableRow>
-
-	   	<LinearLayout
-	   	    android:layout_width="fill_parent"
-	   	    android:layout_height="135dp"
-	   	    android:gravity="center_vertical"
-	   	    android:orientation="horizontal"
-	   	    android:padding="5dp" >
-	 
-		    <Button
-		         android:id="@+id/btnCrear"
-		         android:layout_width="wrap_content"
-		         android:layout_height="wrap_content"
-		         android:text="Crear" 
-		         android:layout_weight="1" />
-		    <Button
-		         android:id="@+id/btnGuardar"
-		         android:layout_width="wrap_content"
-		         android:layout_height="wrap_content"
-		         android:text="Guardar" 
-		         android:layout_weight="1"/>
-		    <Button
-		         android:id="@+id/btnEliminar"
-		         android:layout_width="wrap_content"
-		         android:layout_height="wrap_content"
-		         android:text="Eliminar"
-		         android:layout_weight="1" />  
-		     <Button
-		         android:id="@+id/btnSalir"
-		         android:layout_width="wrap_content"
-		         android:layout_height="wrap_content"
-		         android:layout_weight="1" 
-		         android:text="Salir" />
-	      </LinearLayout>
-	      
-	 </TableLayout>
-</ScrollView>
+			<TableRow >
+		
+			    <ImageView
+			         android:id		="@+id/imgFoto"
+			         android:src	="@drawable/camara"
+			         android:visibility="visible"
+			         android:layout_width="fill_parent"
+			         android:layout_height="wrap_content"
+			         android:clickable="true" />
+			    
+		
+			</TableRow>
+		 </TableLayout>
+	</ScrollView>
+	<FrameLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+    
+		   	<LinearLayout
+		   	    android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="bottom"
+		        android:orientation="horizontal"
+		        android:padding="0dp" >
+		 
+			    <Button
+			         android:id="@+id/btnCrear"
+			         android:layout_width="wrap_content"
+			         android:layout_height="wrap_content"
+			         android:text="Crear" 
+			         android:layout_weight="1" />
+			    <Button
+			         android:id="@+id/btnGuardar"
+			         android:layout_width="wrap_content"
+			         android:layout_height="wrap_content"
+			         android:text="Guardar" 
+			         android:layout_weight="1"/>
+			    <Button
+			         android:id="@+id/btnEliminar"
+			         android:layout_width="wrap_content"
+			         android:layout_height="wrap_content"
+			         android:text="Eliminar"
+			         android:layout_weight="1" />  
+			     <Button
+			         android:id="@+id/btnSalir"
+			         android:layout_width="wrap_content"
+			         android:layout_height="wrap_content"
+			         android:layout_weight="1" 
+			         android:text="Salir" />
+		      </LinearLayout>
+	     </FrameLayout> 
+</LinearLayout>
