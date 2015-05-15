@@ -112,8 +112,8 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	public void visualizarDatosView(){
 		
 		if(this.isCrear){
-			btnEliminar.setVisibility(View.INVISIBLE);
-			btnGuardar.setVisibility(View.INVISIBLE);
+			btnEliminar.setVisibility(View.GONE);
+			btnGuardar.setVisibility(View.GONE);
 			btnCrear.setVisibility(View.VISIBLE);
 			btnSalir.setVisibility(View.VISIBLE);
 			
@@ -123,7 +123,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 			btnEliminar.setVisibility(View.VISIBLE);
 			btnGuardar.setVisibility(View.VISIBLE);
 			btnSalir.setVisibility(View.VISIBLE);
-			btnCrear.setVisibility(View.INVISIBLE);
+			btnCrear.setVisibility(View.GONE);
 			
 			this.modificarLugar();
 		}
