@@ -1,18 +1,9 @@
 package es.exitae.ejerciciofinal.activity;
 
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,12 +36,15 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	private Intent 		igaleria;
 	private AdministrarCamara admCam;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editar_lugares);
-		this.db=new LugaresDAO(this);
+		this.db		=new LugaresDAO(this);
 		this.admCam = new AdministrarCamara(this);
+		
+		
 		//inicializamos lass variabes de la ventana		
 		txtNombre 		= (EditText) findViewById(R.id.txtNomLugar);
 		txtDescripcion 	= (EditText) findViewById(R.id.txtDescripcion);
@@ -63,6 +57,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		btnEliminar 	= (Button) findViewById(R.id.btnEliminar);
 		btnSalir		= (Button) findViewById(R.id.btnSalir);
 		
+				
 		btnGuardar.setOnClickListener(this);
 		btnCrear.setOnClickListener(this);
 		btnEliminar.setOnClickListener(this);
@@ -148,31 +143,150 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 				break;
 				
 			case R.id.btnGuardar: 
-				asignaDatos();
-				this.db.update(this.lugar);
+				actualizarLugar();
 				break;
 				
 			case R.id.btnCrear: 
-				asignaDatos();
-				this.db.insert(this.lugar);	
+				this.crearLugar();
 				break;
 				
 			case R.id.btnEliminar: 
-				int resp=this.db.delete(this.lugar);
-				if (resp==1) {
-					Toast.makeText(this, " Lugar Eliminado: "+resp, Toast.LENGTH_LONG).show();
-					Intent listaLugar = new Intent(this, ListaLugaresActivity.class);
-					startActivity(listaLugar);
-				} else {
-					Toast.makeText(this, " Error al Eliminar Lugar: "+resp, Toast.LENGTH_LONG).show();
-				}
-				
+				this.eliminar();
 				break;
 				
 			case R.id.btnSalir:
 				System.exit(0);
 				break;
 		}
-		
+	}
+	
+	public void eliminar(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("¿Desea Eliminar el Lugar?")
+        .setTitle("Información")
+        .setCancelable(false)
+		.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+		.setPositiveButton("Continuar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    	eliminarLugar();
+                    }
+                });
+		AlertDialog alert = builder.create();
+		alert.show(); 
+	}
+	public void eliminarLugar(){
+		int resp=this.db.delete(this.lugar);
+		if (resp==1) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("El Lugar se ha Eliminado.")
+	        .setTitle("Información.")
+	        .setCancelable(false)
+	        .setNeutralButton("Aceptar",
+	               new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface dialog, int id) {
+	                        dialog.cancel();	
+	                        callListarLugar();
+	                  }
+	                });
+			AlertDialog alert = builder.create();
+			alert.show();
+			
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("El Lugar no se ha Eliminado.")
+	        .setTitle("Error ...")
+	        .setCancelable(false)
+	        .setNeutralButton("Aceptar",
+	               new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface dialog, int id) {
+	                        dialog.cancel();	
+	                  }
+	                });
+			AlertDialog alert = builder.create();
+			alert.show();
+			
+		}
+	}
+
+	public void crearLugar(){
+		asignaDatos();
+		long resp = this.db.insert(this.lugar);	
+		if (resp!=-1) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("El Lugar se ha creado correctamente.")
+	        .setTitle("Información ...")
+	        .setCancelable(false)
+	        .setNeutralButton("Aceptar",
+	               new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface dialog, int id) {
+	                        dialog.cancel();
+	                        callMapaLugares();
+	                  }
+	                });
+			AlertDialog alert = builder.create();
+			alert.show();
+			
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("No Se ha podido crear el Lugar.")
+	        .setTitle("Error ...")
+	        .setCancelable(false)
+	        .setNeutralButton("Aceptar",
+	               new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface dialog, int id) {
+	                        dialog.cancel();	
+	                  }
+	                });
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
+	}
+	
+	public void actualizarLugar(){
+		asignaDatos();
+		int resp=this.db.update(this.lugar);
+		if (resp==1) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("El Lugar se ha Actualizado")
+	        .setTitle("Información.")
+	        .setCancelable(false)
+	        .setNeutralButton("Aceptar",
+	               new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface dialog, int id) {
+	                        dialog.cancel();	
+	                  }
+	         });
+			AlertDialog alert = builder.create();
+			alert.show();
+			
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("No Se ha podido Actualizar el Lugar")
+	        .setTitle("Error ...")
+	        .setCancelable(false)
+	        .setNeutralButton("Aceptar",
+	               new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface dialog, int id) {
+	                        dialog.cancel();	
+	                  }
+	                });
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
+	}
+	
+	public void callListarLugar( ){
+		Intent listaLugar = new Intent(this, ListaLugaresActivity.class);
+		startActivity(listaLugar);
+	}
+	public void callMapaLugares(){
+		Intent mapaLugar = new Intent(this, MapaLugaresActivity.class);
+		startActivity(mapaLugar);
 	}
 }
