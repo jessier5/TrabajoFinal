@@ -28,7 +28,8 @@
                     android:id="@+id/txtNomLugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp" />
+                    android:layout_margin="6dp" 
+                    android:editable="false"/>
             </TableRow>
 
             <TableRow>
@@ -40,7 +41,8 @@
                     android:id="@+id/txtDescripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp" />
+                    android:layout_margin="6dp"
+                    android:editable="false" />
             </TableRow>
 
             <TableRow>
@@ -52,7 +54,8 @@
                     android:id="@+id/txtLatitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp" />
+                    android:layout_margin="6dp"
+                    android:editable="false" />
             </TableRow>
 
             <TableRow>
@@ -64,7 +67,8 @@
                     android:id="@+id/txtLongitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="6dp" />
+                    android:layout_margin="6dp"
+                    android:editable="false" />
             </TableRow>
 
             <TableRow>
@@ -107,7 +111,4 @@
     	
         </TableLayout>
     </ScrollView>
-
-
-
 </LinearLayout>
