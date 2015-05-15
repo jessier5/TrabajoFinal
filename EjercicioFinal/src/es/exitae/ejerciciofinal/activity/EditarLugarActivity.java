@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
@@ -77,16 +76,9 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		this.isCrear 	= getIntent().getExtras().getBoolean("crear");
 	}
 	
-	/*public void nuevoLugar(){
-		this.txtLongitud.setText(String.valueOf(this.lugar.getLongitud()));
-		this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
-	}*/
 	public void modificarLugar(){
 		this.txtNombre.setText(this.lugar.getNombreLugar());
-		this.txtDescripcion.setText(this.lugar.getDescrLugar());
-		//this.txtLongitud.setText(String.valueOf(this.lugar.getLongitud()));
-		//this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
-		
+		this.txtDescripcion.setText(this.lugar.getDescrLugar());		
 		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
 			 this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 200, false);
 		} 
@@ -95,7 +87,6 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d("+++++ onActivityResult: ", "mostrar imagen");
-		Toast.makeText(this, "onActivityResult: "+resultCode+", requestCode: "+requestCode,Toast.LENGTH_SHORT).show();
 		if(resultCode ==RESULT_OK){
 			this.lugar.setFoto(data.getDataString());
 			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 200, false);
@@ -132,7 +123,6 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()){
 			case R.id.imgFoto: 
-				Toast.makeText(this, " selected,  Foto", Toast.LENGTH_LONG).show();
 				// si se hace click en la imagen mostramos la galeria
 				this.igaleria = new Intent(Intent.ACTION_PICK, android.provider.
 										   MediaStore.Images.Media.INTERNAL_CONTENT_URI);
