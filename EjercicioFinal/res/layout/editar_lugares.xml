@@ -60,7 +60,8 @@
 				    android:layout_height="wrap_content"
 				    android:clickable="true"
 				    android:src="@drawable/camara"
-				    android:visibility="visible" />	
+				    android:visibility="visible" 
+				    android:contentDescription="@null"/>	
 			</TableRow>
 		 	 	 
 		<LinearLayout
