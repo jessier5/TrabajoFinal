@@ -1,23 +1,16 @@
 package es.exitae.ejerciciofinal.activity;
 
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.net.URL;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
@@ -28,6 +21,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 	private Lugar 		lugar;
 	// variables para el manejo del UI
 	private Button 	 btnEditar;
+	private Button   btnSalir;
 	private EditText txtNombre;
 	private EditText txtDescripcion;
 	private EditText txtLatitud;
@@ -46,6 +40,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 		//inicializamos lass variabes de la ventana
 		
 		btnEditar = (Button) findViewById(R.id.btnEditarLugar);
+		btnSalir		= (Button) findViewById(R.id.btnSalir);
 		
 		txtNombre = (EditText) findViewById(R.id.txtNomLugar);
 		txtDescripcion = (EditText) findViewById(R.id.txtDescripcion);
@@ -55,6 +50,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 		iFoto		= (ImageView)findViewById(R.id.imgFoto);
 		iFoto.setOnClickListener(this);
 		btnEditar.setOnClickListener(this);
+		btnSalir.setOnClickListener(this);
 		
 		this.cargaDatosLugar();
 	}
@@ -80,7 +76,10 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 				Intent editarLugar = new Intent(this, EditarLugarActivity.class);
 				editarLugar.putExtra("lugar",lugar);
 				startActivity(editarLugar);
-			break;
+				break;
+			case R.id.btnSalir:
+				System.exit(0);
+				break;
 		}
 		
 	}
