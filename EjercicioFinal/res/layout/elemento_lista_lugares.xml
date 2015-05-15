@@ -3,30 +3,39 @@
        xmlns:android="http://schemas.android.com/apk/res/android"
        android:layout_width="match_parent"
        android:layout_height="?android:attr/listPreferredItemHeight">
+       
        <ImageView android:id="@+id/foto"
              android:layout_width="?android:attr/listPreferredItemHeight"
              android:layout_height="?android:attr/listPreferredItemHeight"
              android:layout_alignParentLeft="true"
-             android:contentDescription="fotografía"
+             android:layout_alignParentStart="true"
+             android:layout_alignParentTop="true"
+             android:contentDescription="@string/txt_foto"
              android:src="@drawable/ic_launcher"/>
              <!-- android:src="@drawable/bar" -->
              
        <TextView android:id="@+id/nombre"
-             android:layout_width="match_parent"
+             android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="Nombres del lugar"
+             android:text="@string/txt_nombre_lugar"
              android:layout_toRightOf="@id/foto"
+             android:layout_toEndOf="@id/foto"
              android:layout_alignParentTop="true"
              android:textAppearance="?android:attr/textAppearanceMedium"
-             android:singleLine="true" />
+             android:singleLine="true" 
+             android:layout_marginLeft="23dp"
+             android:layout_marginStart="23dp"
+             android:layout_marginTop="10dp"
+             android:textSize="16sp"/>
        <TextView
            android:id="@+id/descripcion"
-           android:layout_width="match_parent"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_below="@id/nombre"
-           android:layout_toRightOf="@+id/foto"
-           android:gravity="center"
+           android:layout_alignBottom="@+id/foto"
+           android:layout_alignLeft="@+id/nombre"
+           android:layout_alignStart="@+id/nombre"
            android:singleLine="true"
-            android:text="descripcion del lugar"/>
+           android:text="@string/txt_descripcion_lugar"/>
        
 </RelativeLayout>
