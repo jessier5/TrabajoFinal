@@ -28,8 +28,8 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	private Button   btnSalir;
 	private EditText txtNombre;
 	private EditText txtDescripcion;
-	private EditText txtLatitud;
-	private EditText txtLongitud;
+	//private EditText txtLatitud;
+	//private EditText txtLongitud;
 	private ImageView	iFoto;
 	private Boolean 	isCrear = false;
 	private static int 	SELECT_PICTURE = 2;
@@ -48,8 +48,8 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		//inicializamos lass variabes de la ventana		
 		txtNombre 		= (EditText) findViewById(R.id.txtNomLugar);
 		txtDescripcion 	= (EditText) findViewById(R.id.txtDescripcion);
-		txtLatitud 		= (EditText) findViewById(R.id.txtLatitud);
-		txtLongitud 	= (EditText) findViewById(R.id.txtLongitud);
+		//txtLatitud 		= (EditText) findViewById(R.id.txtLatitud);
+		//txtLongitud 	= (EditText) findViewById(R.id.txtLongitud);
 		
 		iFoto			= (ImageView)findViewById(R.id.imgFoto);
 		btnGuardar 		= (Button) findViewById(R.id.btnGuardar);
@@ -77,15 +77,15 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		this.isCrear 	= getIntent().getExtras().getBoolean("crear");
 	}
 	
-	public void nuevoLugar(){
+	/*public void nuevoLugar(){
 		this.txtLongitud.setText(String.valueOf(this.lugar.getLongitud()));
 		this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
-	}
+	}*/
 	public void modificarLugar(){
 		this.txtNombre.setText(this.lugar.getNombreLugar());
 		this.txtDescripcion.setText(this.lugar.getDescrLugar());
-		this.txtLongitud.setText(String.valueOf(this.lugar.getLongitud()));
-		this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
+		//this.txtLongitud.setText(String.valueOf(this.lugar.getLongitud()));
+		//this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
 		
 		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
 			 this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 200, false);
@@ -117,7 +117,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 			btnCrear.setVisibility(View.VISIBLE);
 			btnSalir.setVisibility(View.VISIBLE);
 			
-			this.nuevoLugar();
+			//this.nuevoLugar();
 		}
 		else{
 			btnEliminar.setVisibility(View.VISIBLE);
