@@ -67,7 +67,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 		this.txtLatitud.setText(String.valueOf(lugar.getLatitud()));
 		
 		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
-			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400, false);
+			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 200, false);
 		} 
 		
 	}
