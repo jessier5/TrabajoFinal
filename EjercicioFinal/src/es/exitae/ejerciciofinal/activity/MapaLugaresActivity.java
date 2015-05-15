@@ -45,7 +45,7 @@ public class MapaLugaresActivity extends FragmentActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("++++ Iniciando PrincipalActivity: ", Thread.currentThread().getName());
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_mapa_lugares);
+		setContentView(R.layout.mapa_lugares);
 		//obtenemos la conexion a la base de datos
 		this.db	=	new LugaresDAO(this);
 		// obtenemos el estado de conexion a la red

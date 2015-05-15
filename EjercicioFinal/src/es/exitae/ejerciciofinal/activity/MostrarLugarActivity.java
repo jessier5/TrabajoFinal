@@ -34,7 +34,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_mostrar_lugar);
+		setContentView(R.layout.mostrar_lugar);
 		this.db		=	new LugaresDAO(this);
 		this.admCam = 	new AdministrarCamara(this);
 		//inicializamos lass variabes de la ventana
