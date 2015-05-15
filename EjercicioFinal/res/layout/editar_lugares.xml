@@ -25,7 +25,7 @@
 			    <TextView
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="Nombre Lugar: " />
+			        android:text="@string/txt_nombre_lugar" />
 			    <EditText
 			        android:id="@+id/txtNomLugar"
 			        android:layout_width="match_parent"
@@ -37,43 +37,19 @@
 			    <TextView
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="Descripcion: " />
+			        android:text="@string/txt_descripcion_lugar" />
 			    <EditText
 			        android:id="@+id/txtDescripcion"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:layout_margin="6dp" />
+			        android:layout_margin="6dp"/>
 			</TableRow>
 			
 			<TableRow>
 			    <TextView
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="Latitud: " />		
-			    <EditText
-			        android:id="@+id/txtLatitud"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:layout_margin="6dp" />
-			</TableRow>
-			
-			<TableRow>
-			    <TextView
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:text="Longitud: " />
-			    <EditText
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:id="@+id/txtLongitud"
-			        android:layout_margin="6dp" />
-			</TableRow>
-			
-			<TableRow>
-			    <TextView
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:text="Foto:"
+			        android:text="@string/txt_foto"
 			        android:id="@+id/lblFoto" />
 		    </TableRow>
 		    
@@ -90,34 +66,34 @@
 		<LinearLayout
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+			android:gravity="bottom"
 			android:orientation="horizontal"
-			android:layout_marginTop="15dp" >
+			android:layout_marginTop="20dp" >
 		 
 			    <Button
 			         android:id="@+id/btnCrear"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
-			         android:text="Crear" 
-			         android:layout_weight="1" 
-			         android:onClick="clicked"/>		    
+			         android:text="@string/btn_crear" 
+			         android:layout_weight="1"/>		    
 				<Button
 			         android:id="@+id/btnGuardar"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
-			         android:text="Guardar" 
+			         android:text="@string/btn_guardar_lugar" 
 			         android:layout_weight="1"/>
 			    <Button
 			         android:id="@+id/btnEliminar"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
-			         android:text="Eliminar"
+			         android:text="@string/btn_eliminar"
 			         android:layout_weight="1"/> 
 			     <Button
 			         android:id="@+id/btnSalir"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
 			         android:layout_weight="1" 
-			         android:text="Salir"/> 			     
+			         android:text="@string/btn_salir"/> 			     
 		</LinearLayout>
 		</TableLayout>
 	</ScrollView>
