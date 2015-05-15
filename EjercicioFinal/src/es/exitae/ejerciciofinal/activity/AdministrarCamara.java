@@ -6,8 +6,16 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.widget.ImageView;
 
 public class AdministrarCamara {
@@ -18,7 +26,7 @@ public class AdministrarCamara {
 		this.ctx=ct;
 	}
 
-	public void asignarFotoView(ImageView iFoto, String filePath, int with){
+	public void asignarFotoView(ImageView iFoto, String filePath, int with, boolean redondear){
 		BitmapFactory.Options options 	= new BitmapFactory.Options();
         options.inJustDecodeBounds 		= true;
         InputStream is = null;
@@ -34,9 +42,20 @@ public class AdministrarCamara {
         }
         /* asociamos el bitmap al imageview */
         iFoto.setImageBitmap(scaleImage(options,Uri.parse(filePath),with));
-		
-	}
-	
+        
+        if(redondear){
+        	Bitmap imagen = scaleImage(options,Uri.parse(filePath),with);
+        	RoundedBitmapDrawable roundedDrawable =
+                    RoundedBitmapDrawableFactory.create(this.ctx.getResources(), imagen);
+        	//asignamos el CornerRadius
+            roundedDrawable.setCornerRadius(90);
+            iFoto.setImageDrawable(roundedDrawable);
+        }
+        else{
+        	iFoto.setImageBitmap(scaleImage(options,Uri.parse(filePath),with));
+        }
+        
+    }
 	
 	//escalando imagen
 	private Bitmap scaleImage(BitmapFactory.Options options, Uri uri, int targetWidth) {
@@ -76,4 +95,5 @@ public class AdministrarCamara {
 	private static int nearest2pow(int value) {
         return value == 0 ? 0  : (32 - Integer.numberOfLeadingZeros(value - 1)) / 2;
     }
+	
 }

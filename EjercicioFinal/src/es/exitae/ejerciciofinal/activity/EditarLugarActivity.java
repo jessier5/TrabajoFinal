@@ -93,7 +93,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
 		
 		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
-			 this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400);
+			 this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400, false);
 		} 
 	}
 	
@@ -103,7 +103,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		Toast.makeText(this, "onActivityResult: "+resultCode+", requestCode: "+requestCode,Toast.LENGTH_SHORT).show();
 		if(resultCode ==RESULT_OK){
 			this.lugar.setFoto(data.getDataString());
-			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400);
+			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400, false);
     	}
 	}
 	
@@ -159,7 +159,14 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 				
 			case R.id.btnEliminar: 
 				int resp=this.db.delete(this.lugar);
-				Toast.makeText(this, " Lugar Eliminado: "+resp, Toast.LENGTH_LONG).show();
+				if (resp==1) {
+					Toast.makeText(this, " Lugar Eliminado: "+resp, Toast.LENGTH_LONG).show();
+					Intent listaLugar = new Intent(this, ListaLugaresActivity.class);
+					startActivity(listaLugar);
+				} else {
+					Toast.makeText(this, " Error al Eliminar Lugar: "+resp, Toast.LENGTH_LONG).show();
+				}
+				
 				break;
 				
 			case R.id.btnSalir:

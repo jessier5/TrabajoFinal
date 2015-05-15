@@ -100,7 +100,7 @@ public class AdaptadorLugares extends BaseAdapter {
 	     holder.descripcion.setText(lugar.getDescrLugar());
 	     
 	     if (lugar.getFoto()!=null && !lugar.getFoto().equals("")) {
-			 this.admCam.asignarFotoView(holder.foto, lugar.getFoto(), 400);
+			 this.admCam.asignarFotoView(holder.foto, lugar.getFoto(), 400, true);
 		} 
 	       
 	     return view;
