@@ -76,6 +76,7 @@ public class MostrarLugarActivity extends Activity implements OnClickListener {
 				Intent editarLugar = new Intent(this, EditarLugarActivity.class);
 				editarLugar.putExtra("lugar",lugar);
 				startActivity(editarLugar);
+				this.finish();
 				break;
 			case R.id.btnSalir:
 				System.exit(0);
