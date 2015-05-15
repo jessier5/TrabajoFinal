@@ -12,12 +12,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
 import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 
 
-public class ListaLugaresActivity extends ListActivity {
+public class ListaLugaresActivity extends ListActivity  {
 	
 	//Declara objeto de la clase AdaptadorLugares
 	public AdaptadorLugares adaptador;
@@ -32,6 +33,7 @@ public class ListaLugaresActivity extends ListActivity {
 		adaptador= new AdaptadorLugares(this);
 		//Indicar el adaptador con la lista de elementos a visualizar
 		setListAdapter(adaptador);
+		
 	   
 	}
 	
@@ -67,4 +69,6 @@ public class ListaLugaresActivity extends ListActivity {
 	    }
 	    return true;
 	}
+
+
 }

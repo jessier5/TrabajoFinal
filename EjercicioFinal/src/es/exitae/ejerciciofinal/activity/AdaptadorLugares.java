@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import es.exitae.ejerciciofinal.R;
 import es.exitae.ejerciciofinal.beans.Lugar;
 import es.exitae.ejerciciofinal.dao.LugaresDAO;
@@ -32,6 +31,7 @@ public class AdaptadorLugares extends BaseAdapter {
     
     private Context context;
     private AdministrarCamara admCam;
+    private Context ctx;
     
     public AdaptadorLugares(Context contexto) {
     	
@@ -42,6 +42,7 @@ public class AdaptadorLugares extends BaseAdapter {
         this.db=new LugaresDAO(contexto);
         this.Lugares=db.selectAll();
         this.admCam = 	new AdministrarCamara(contexto);
+        this.ctx=contexto;
     }
     
     
@@ -88,6 +89,9 @@ public class AdaptadorLugares extends BaseAdapter {
 	    	 holder.foto = (ImageView) view.findViewById(R.id.foto);
 	    	 holder.nombre = (TextView) view.findViewById(R.id.nombre);
 	    	 holder.descripcion = (TextView) view.findViewById(R.id.descripcion);
+	    	 holder.imgEliminar = (ImageView) view.findViewById(R.id.imgEliminar);
+	    	 
+	    	 holder.imgEliminar.setOnClickListener(new OnItemClickListener(posicion));
 	    	 view.setTag(holder);
 	     }
 	     else{
@@ -107,8 +111,29 @@ public class AdaptadorLugares extends BaseAdapter {
 	}
 	
 	private class ViewHolder {
-		public ImageView foto;
+		public ImageView foto,imgEliminar;
 		public TextView nombre, descripcion;
+	}
+	
+	private class OnItemClickListener implements OnClickListener{ 
+		private int mPosition; 
+		
+		OnItemClickListener(int position){
+				mPosition = position; 
+				;
+		} 
+		
+		@Override 
+		public void onClick(View arg0) { 
+			int resp=db.delete(Lugares.get(mPosition));
+			if (resp==1) {
+				Lugares.remove(mPosition);
+				Toast.makeText(ctx, "Lugar eliminado", Toast.LENGTH_LONG).show();
+				notifyDataSetChanged();
+			} else {
+				Toast.makeText(ctx, "Error: al eliminar el lugar..", Toast.LENGTH_LONG).show();
+			}
+		} 
 	}
 }
 
