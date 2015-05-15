@@ -88,7 +88,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		this.txtLatitud.setText(String.valueOf(this.lugar.getLatitud()));
 		
 		if (this.lugar.getFoto()!=null && !this.lugar.getFoto().equals("")) {
-			 this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400, false);
+			 this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 200, false);
 		} 
 	}
 	
@@ -98,7 +98,7 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 		Toast.makeText(this, "onActivityResult: "+resultCode+", requestCode: "+requestCode,Toast.LENGTH_SHORT).show();
 		if(resultCode ==RESULT_OK){
 			this.lugar.setFoto(data.getDataString());
-			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 400, false);
+			this.admCam.asignarFotoView(this.iFoto, this.lugar.getFoto(), 200, false);
     	}
 	}
 	
@@ -259,7 +259,8 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	        .setNeutralButton("Aceptar",
 	               new DialogInterface.OnClickListener() {
 	                    public void onClick(DialogInterface dialog, int id) {
-	                        dialog.cancel();	
+	                        dialog.cancel();
+	                        callMostrarLugares(lugar);
 	                  }
 	         });
 			AlertDialog alert = builder.create();
@@ -287,6 +288,11 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	}
 	public void callMapaLugares(){
 		Intent mapaLugar = new Intent(this, MapaLugaresActivity.class);
+		startActivity(mapaLugar);
+	}
+	public void callMostrarLugares(Lugar lugar){
+		Intent mapaLugar = new Intent(this, MostrarLugarActivity.class);
+		mapaLugar.putExtra("lugar",lugar);
 		startActivity(mapaLugar);
 	}
 }
