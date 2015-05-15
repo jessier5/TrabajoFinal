@@ -285,14 +285,17 @@ public class EditarLugarActivity extends Activity implements OnClickListener{
 	public void callListarLugar( ){
 		Intent listaLugar = new Intent(this, ListaLugaresActivity.class);
 		startActivity(listaLugar);
+		this.finish(); //elimina el hilo del activity
 	}
 	public void callMapaLugares(){
 		Intent mapaLugar = new Intent(this, MapaLugaresActivity.class);
 		startActivity(mapaLugar);
+		this.finish(); //elimina el hilo del activity
 	}
 	public void callMostrarLugares(Lugar lugar){
 		Intent mapaLugar = new Intent(this, MostrarLugarActivity.class);
 		mapaLugar.putExtra("lugar",lugar);
 		startActivity(mapaLugar);
+		this.finish(); //elimina el hilo del activity
 	}
 }
