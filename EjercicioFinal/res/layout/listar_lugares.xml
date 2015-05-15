@@ -14,3 +14,4 @@
       android:layout_height="match_parent"
       android:text="@string/txt_empty_lugares" />
 </FrameLayout>
+
