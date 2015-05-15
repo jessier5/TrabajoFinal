@@ -11,7 +11,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -110,6 +112,7 @@ public class MapaLugaresActivity extends FragmentActivity
 				modiLugar.putExtra("lugar",lugar);
 				modiLugar.putExtra("crear", false);
 				startActivity(modiLugar);
+				this.finish();
 				break;
 			}
 		}
@@ -134,6 +137,7 @@ public class MapaLugaresActivity extends FragmentActivity
 		crearLugar.putExtra("lugar",lugar);
 		crearLugar.putExtra("crear", true);
 		startActivity(crearLugar);
+		this.finish();
 		Log.d("++++ FinonMapClick ", Thread.currentThread().getName());
 	}
 
@@ -173,10 +177,6 @@ public class MapaLugaresActivity extends FragmentActivity
 		
 	}
 
-
-
-
-
 	@Override
 	public void onMyLocationChange(Location location) {
 		Log.d("++++ onMyLocationChange ", Thread.currentThread().getName());
@@ -192,5 +192,25 @@ public class MapaLugaresActivity extends FragmentActivity
 		
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.activity_mapa_lugares, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.return_menu:
+	        	Intent principal = new Intent(this, PrincipalActivity.class);
+				startActivity(principal);
+				this.finish();
+	        	return true;
+	    }
+	    return true;
+	}
 
 }
