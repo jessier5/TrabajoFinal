@@ -113,29 +113,11 @@ public class LugaresDAO {
 		 //declaramos las variables que contendran los datos
 		 // del registro a eliminar
 		 String selection=""; 
-		 String where	 ="";
-		
-		 //obtenemos los datos del registro a eliminar
-		 //Verificamos si nos viene informado el ID
-		 if(Integer.valueOf(lugar.getId())!=null){
-			 selection=LugaresDataSourceContract.ColumnLugares.ID_LUGAR+" =?";
-			 where=String.valueOf(lugar.getId());
-		 }
-		 //Verificamos si nos viene informado el Nombre del Lugar
-		 if(lugar.getNombreLugar() !=null && 
-		    !lugar.getNombreLugar().equals("")){
-			 selection=selection.equals("")?
-					 	LugaresDataSourceContract.ColumnLugares.NOMBRE_LUGAR+" = ?":
-					 	selection+" and "+LugaresDataSourceContract.ColumnLugares.NOMBRE_LUGAR+" =?";
-			 where=where.equals("")?lugar.getNombreLugar():where+","+lugar.getNombreLugar();
-		 }
-		 //verificamos si nos viene informado la latitud
+		 selection=LugaresDataSourceContract.ColumnLugares.ID_LUGAR+" =?";
+ 		 
+		 String [] datosWhere={String.valueOf(lugar.getId())};	
 		 
-		 
-		 String [] datosWhere={where};	
-		 this.database.delete(LugaresDataSourceContract.TABLE_NAME, selection, datosWhere);
-		 
-		 return 0;
+		 return this.database.delete(LugaresDataSourceContract.TABLE_NAME, selection, datosWhere);
 	 }
 
 }
