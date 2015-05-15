@@ -8,6 +8,8 @@
 	<string name="btn_crear">Crear</string>
 	<string name="btn_eliminar">Eliminar</string>
 	<string name="btn_salir">Salir</string>
+	<string name="btn_editar">Editar Lugar</string>
+	
 	<string name="txt_empty_lugares">No tiene lugares guardados</string>
 	<string name="txt_nombre_lugar">Nombre Lugar: </string>
 	<string name="txt_descripcion_lugar">Descripcion: </string> 
