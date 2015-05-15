@@ -44,8 +44,6 @@ public class AdaptadorLugares extends BaseAdapter {
         this.admCam = 	new AdministrarCamara(contexto);
         this.ctx=contexto;
     }
-    
-    
     /**
 	 * Indica cuántos elementos queremos mostrar
 	 */
@@ -61,7 +59,6 @@ public class AdaptadorLugares extends BaseAdapter {
 	public Object getItem(int position) {
 		return Lugares.get(position);
 	}
-
 	/**
 	 * Devolverá el id que se muestra en una determinada posición
 	 */
@@ -90,7 +87,6 @@ public class AdaptadorLugares extends BaseAdapter {
 	    	 holder.nombre = (TextView) view.findViewById(R.id.nombre);
 	    	 holder.descripcion = (TextView) view.findViewById(R.id.descripcion);
 	    	 holder.imgEliminar = (ImageView) view.findViewById(R.id.imgEliminar);
-	    	 
 	    	 holder.imgEliminar.setOnClickListener(new OnItemClickListener(posicion));
 	    	 view.setTag(holder);
 	     }
@@ -105,9 +101,8 @@ public class AdaptadorLugares extends BaseAdapter {
 	     
 	     if (lugar.getFoto()!=null && !lugar.getFoto().equals("")) {
 			 this.admCam.asignarFotoView(holder.foto, lugar.getFoto(), 400, true);
-		} 
-	       
-	     return view;
+		}   
+	    return view;
 	}
 	
 	private class ViewHolder {
@@ -120,7 +115,6 @@ public class AdaptadorLugares extends BaseAdapter {
 		
 		OnItemClickListener(int position){
 				mPosition = position; 
-				;
 		} 
 		
 		@Override 
