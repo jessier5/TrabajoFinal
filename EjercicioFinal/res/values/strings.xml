@@ -5,11 +5,13 @@
 	<string name="btn_lista">Lista</string>
 	<string name="btn_mapa">Mapa</string>
 	<string name="btn_guardar_lugar">Guardar</string>
+	<string name="btn_crear">Crear</string>
+	<string name="btn_eliminar">Eliminar</string>
+	<string name="btn_salir">Salir</string>
 	<string name="txt_empty_lugares">No tiene lugares guardados</string>
-	<string name="txt_nombre_lugar">Nombre</string>
-	<string name="txt_nombre_lugar_hint">Nombre del lugar</string>
-	<string name="txt_descripcion_lugar">Descripcion</string>
-	<string name="txt_descripcion_lugar_hint">Descripcion del lugar</string>
+	<string name="txt_nombre_lugar">Nombre Lugar: </string>
+	<string name="txt_descripcion_lugar">Descripcion: </string> 
+	<string name="txt_foto">Foto: </string>
 	<string name="title_activity_mostrar_lugar">MostrarLugarActivity</string>
 	<string name="title_activity_lista_lugares">ListaLugaresActivity</string>
 	<string name="title_activity_editar_lugar">EditarLugarActivity</string>
