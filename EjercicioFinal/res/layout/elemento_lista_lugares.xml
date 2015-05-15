@@ -38,4 +38,13 @@
            android:singleLine="true"
            android:text="@string/txt_descripcion_lugar"/>
        
+		  <ImageView
+		      android:id="@+id/imgEliminar"
+		      android:layout_width="30dp"
+		      android:layout_height="wrap_content"
+		      android:layout_alignParentBottom="true"
+		      android:layout_alignParentRight="true"
+		      android:src="@drawable/ic_eliminar" 
+		      android:clickable="true"/>
+       
 </RelativeLayout>
