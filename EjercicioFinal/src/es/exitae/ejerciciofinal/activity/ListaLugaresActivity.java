@@ -37,6 +37,7 @@ public class ListaLugaresActivity extends ListActivity  {
 		adaptador= new AdaptadorLugares(this);
 		//Indicar el adaptador con la lista de elementos a visualizar
 		setListAdapter(adaptador);
+		new RetrieveLugaresListTask().execute();
 			   
 	}
 	
@@ -58,12 +59,7 @@ public class ListaLugaresActivity extends ListActivity  {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.listar_lugares, menu);
 	    return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
-		new RetrieveLugaresListTask().execute();
+	    
 	}
 	
 	@Override
@@ -90,6 +86,7 @@ public class ListaLugaresActivity extends ListActivity  {
 		}
 		@Override
 		protected Void doInBackground(Void... params) {
+			adaptador.cleanList();
 			this.db		 = new LugaresDAO(ListaLugaresActivity.this);
 			this.Lugares = db.selectAll();
 			for(Lugar lugar : this.Lugares){

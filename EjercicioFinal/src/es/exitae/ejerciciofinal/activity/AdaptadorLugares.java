@@ -115,7 +115,9 @@ public class AdaptadorLugares extends BaseAdapter {
 	public void addLugar(Lugar lugar){
 		this.Lugares.add(lugar);
 	}
-	
+	public void cleanList(){
+		this.Lugares.clear();
+	}
 	
 	private class OnItemClickListener implements OnClickListener{ 
 		private int mPosition; 
