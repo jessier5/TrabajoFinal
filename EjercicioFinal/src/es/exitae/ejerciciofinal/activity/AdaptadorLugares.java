@@ -1,5 +1,6 @@
 package es.exitae.ejerciciofinal.activity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -39,10 +40,10 @@ public class AdaptadorLugares extends BaseAdapter {
     	this.context = (Activity) this.context;
     	Log.d("++++ Iniciando adpatador: ", Thread.currentThread().getName());
     	//inflador = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.db=new LugaresDAO(contexto);
-        this.Lugares=db.selectAll();
-        this.admCam = 	new AdministrarCamara(contexto);
-        this.ctx=contexto;
+    	this.db			= new LugaresDAO(contexto);
+        this.admCam 	= new AdministrarCamara(contexto);
+        this.Lugares 	= new ArrayList<Lugar>();
+        this.ctx		= contexto;
     }
     /**
 	 * Indica cuántos elementos queremos mostrar
@@ -109,6 +110,12 @@ public class AdaptadorLugares extends BaseAdapter {
 		public ImageView foto,imgEliminar;
 		public TextView nombre, descripcion;
 	}
+	//metodo que agrega un elemento a lista
+	
+	public void addLugar(Lugar lugar){
+		this.Lugares.add(lugar);
+	}
+	
 	
 	private class OnItemClickListener implements OnClickListener{ 
 		private int mPosition; 
