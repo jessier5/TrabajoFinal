@@ -4,7 +4,8 @@
     android:id="@+id/principal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/fondo_color">
       
     <ScrollView 
         android:layout_width="fill_parent"
@@ -25,7 +26,8 @@
 			    <TextView
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="@string/txt_nombre_lugar" />
+			        android:text="@string/txt_nombre_lugar" 
+			        style="@style/myTextStyle"/>
 			    <EditText
 			        android:id="@+id/txtNomLugar"
 			        android:layout_width="match_parent"
@@ -37,7 +39,8 @@
 			    <TextView
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="@string/txt_descripcion_lugar" />
+			        android:text="@string/txt_descripcion_lugar"
+			        style="@style/myTextStyle" />
 			    <EditText
 			        android:id="@+id/txtDescripcion"
 			        android:layout_width="match_parent"
@@ -50,7 +53,8 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:text="@string/txt_foto"
-			        android:id="@+id/lblFoto" />
+			        android:id="@+id/lblFoto"
+			        style="@style/myTextStyle" />
 		    </TableRow>
 		    
 			<TableRow  android:gravity="center">
@@ -58,43 +62,44 @@
 				    android:id="@+id/imgFoto"
 				    android:layout_width="fill_parent"
 				    android:layout_height="wrap_content"
-				    android:clickable="true"
 				    android:src="@drawable/camara"
-				    android:visibility="visible" 
-				    android:contentDescription="@null"/>	
+				    style="@style/imageStyle"/>	
 			</TableRow>
 		 	 	 
 		<LinearLayout
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:gravity="bottom"
-			android:orientation="horizontal"
-			android:layout_marginTop="20dp" >
+			android:orientation="horizontal" >
 		 
 			    <Button
 			         android:id="@+id/btnCrear"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
 			         android:text="@string/btn_crear" 
-			         android:layout_weight="1"/>		    
+			         android:layout_weight="1"
+			         android:background="@drawable/boton_color"/>		    
 				<Button
 			         android:id="@+id/btnGuardar"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
 			         android:text="@string/btn_guardar_lugar" 
-			         android:layout_weight="1"/>
+			         android:layout_weight="1"
+			         android:background="@drawable/boton_color"/>
 			    <Button
 			         android:id="@+id/btnEliminar"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
 			         android:text="@string/btn_eliminar"
-			         android:layout_weight="1"/> 
+			         android:layout_weight="1"
+			         android:background="@drawable/boton_color"/> 
 			     <Button
 			         android:id="@+id/btnSalir"
 			         android:layout_width="wrap_content"
 			         android:layout_height="wrap_content"
 			         android:layout_weight="1" 
-			         android:text="@string/btn_salir"/> 			     
+			         android:text="@string/btn_salir"
+			         android:background="@drawable/boton_color"/> 			     
 		</LinearLayout>
 		</TableLayout>
 	</ScrollView>

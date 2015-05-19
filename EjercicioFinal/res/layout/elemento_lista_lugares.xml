@@ -2,7 +2,8 @@
 <RelativeLayout
        xmlns:android="http://schemas.android.com/apk/res/android"
        android:layout_width="match_parent"
-       android:layout_height="?android:attr/listPreferredItemHeight">
+       android:layout_height="?android:attr/listPreferredItemHeight"
+       android:background="@drawable/fondo_color">
        
        <ImageView android:id="@+id/foto"
              android:layout_width="?android:attr/listPreferredItemHeight"
@@ -12,7 +13,6 @@
              android:layout_alignParentTop="true"
              android:contentDescription="@string/txt_foto"
              android:src="@drawable/ic_launcher"/>
-             <!-- android:src="@drawable/bar" -->
              
        <TextView android:id="@+id/nombre"
              android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
              android:layout_marginLeft="23dp"
              android:layout_marginStart="23dp"
              android:layout_marginTop="10dp"
-             android:textSize="16sp"/>
+             style="@style/myTextStyle"/>
        <TextView
            android:id="@+id/descripcion"
            android:layout_width="wrap_content"
@@ -36,7 +36,8 @@
            android:layout_alignLeft="@+id/nombre"
            android:layout_alignStart="@+id/nombre"
            android:singleLine="true"
-           android:text="@string/txt_descripcion_lugar"/>
+           android:text="@string/txt_descripcion_lugar"
+           android:textColor="#FFFFFF"/>
        
 		  <ImageView
 		      android:id="@+id/imgEliminar"
@@ -45,6 +46,7 @@
 		      android:layout_alignParentBottom="true"
 		      android:layout_alignParentRight="true"
 		      android:src="@drawable/ic_eliminar" 
-		      android:clickable="true"/>
+		      android:clickable="true"
+		      android:contentDescription="eliminar"/>
        
 </RelativeLayout>
