@@ -18,5 +18,6 @@
 	<string name="title_activity_lista_lugares">ListaLugaresActivity</string>
 	<string name="title_activity_editar_lugar">EditarLugarActivity</string>
 	<string name="title_activity_lugares_activity">MapaLugaresActivity</string>
+	<string name="title_principal">Gestión de lugares Personales</string>
 	
 </resources>

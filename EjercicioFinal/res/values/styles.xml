@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -14,7 +14,27 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+       
     </style>
+    
+    <style name="myTextStylePrinp">
+  		<item name="android:textColor">#FFFFFF</item>
+  		<item name="android:typeface">sans</item>
+  		<item name="android:textSize">30sp</item>
+ 	</style>
 
+    <style name="myTextStyle">
+  		<item name="android:textColor">#FFFFFF</item>
+  		<item name="android:typeface">sans</item>
+  		<item name="android:textSize">17sp</item>
+ 	</style>
+ 	
+    <style name="imageStyle">
+    	<item name="android:clickable">true</item>
+    	<item name="android:visibility">visible</item>
+    	<item name="android:contentDescription">@string/txt_foto</item>
+    	<item name="android:padding">30dp</item>
+	</style>
+
+    
 </resources>
